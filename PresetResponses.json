@@ -1,0 +1,46 @@
+{ 
+    "PresetResponses" : [
+        {
+            "question" : "What has happened to the Legislation Directory",
+            "answer" : "Legislative amendments were previously held in a section of the eISB known as the Legislation Directory. The information from the Legislation Directory has now been integrated into relevant parts of the site. For example, to find the list of amendments made to a particular Act, go to that Act and then click on the “Amendments, Commencements, SIs made under this Act” button. Users should note that information is displayed differently in relation to Acts enacted before and after 1931. Each Act enacted before 1 January 1931 appears in a table for the year in which the relevant Act was enacted and Acts appear in order of enactment in that table. Entries include details in relation to how each Act has been amended or otherwise affected. Details in relation to commencement information for Acts enacted prior to 1931 can be found on the Acts home page under Acts-More information, Commencement Orders. There is currently no list available of secondary legislation made under individual Acts enacted before 1 January 1931. Each Act enacted since 1 January 1931 has its own table containing three sub-tables: commencement information, amendments and other effects, and other associated secondary legislation (SIs made under the Act) and effects. Work is continuing to extend this newer format to Acts enacted before 1931.",
+            "keywords" : ["Directory", "legislation", "happened"],
+            "keyphrase" : "Legislation Directory"
+        },
+        {
+            "question" : "What can I find on the eISB",
+            "answer" : "The eISB includes all Acts of the Oireachtas from 1922 to the present, statutory rules and orders from 1922 to 1947, and statutory instruments from 1948 to the present. It also includes most of the pre 1922 public and general statutes still in force in the State following the enactment of the Statute Law Revision Act 2007 (the Act of 2007). The Act of 2007 repealed all public and general statutes enacted before 6 December 1922 with the exception of those listed in Schedule 1 of that Act. In the case of a small number of those statutes, the full text is not available in electronic format. The text of the Constitution of Ireland is also published on the site. The site has further information about legislation, including a list of collective citations, a list of commencement orders, a list of Orders made under section 6(1) of the Ministers and Secretaries (Amendment) Act 1939 and a list of Regulations made under section 3 of the European Communities Act 1972.",
+            "keywords" : ["eSIB", "find"],
+            "keyphrase" : "find on the eISB"
+        },
+        {
+            "question" : "Will I find new legislation on the eISB",
+            "answer" : "New Acts and statutory instruments are published as soon as possible after they have been notified in the Iris Oifigiúil and we have received them from the Houses of the Oireachtas and Government Publications. The homepage of the eISB contains information about the legislation most recently published in PDF format.",
+            "keywords" : ["eSIB", "find", "legislation"],
+            "keyphrase" : "find new legislation"
+        },
+        {
+            "question" : "Why is the legislation I’m looking for not on this site",
+            "answer" : "Some legislation dating from before 1922 is not published on the site because it has either been repealed or is not available in electronic format. Very recent Acts or statutory instruments may not yet have been published (see answer to previous question). Only statutory instruments to which the Statutory Instruments Act 1947 primarily apply are included on the site. In relation to statutory instruments to which the Statutory Instruments Act 1947 does not apply, including bye-laws made by local authorities, users should contact the body who made the statutory instrument concerned.",
+            "keywords" : ["site", "legislation", "not"],
+            "keyphrase" : "not on this site"
+        },
+        {
+            "question" : "Is the legislation on this site the official version",
+            "answer" : "No, the electronic version is not the official version. Article 25.3.5 of the Constitution provides that the text of an Act which is signed by the President and enrolled in the office of the Registrar of the Supreme Court shall be conclusive evidence of the provisions of such law. Section 2 of the Documentary Evidence Act 1925 provides that prima facie evidence of an Act may be given in all Courts of Justice and in all legal proceedings by producing a paper copy published by Stationery Office. Section 3 of that Act contains a similar provision in relation to statutory instruments.",
+            "keywords" : ["version", "legislation", "site", "official"],
+            "keyphrase" : "official version"
+        },
+        {
+            "question" : "Where can I buy a paper copy of an Act or statutory instrument",
+            "answer" : "To buy paper copies of legislation, you can contact the Government Publications Office.",
+            "keywords" : ["Act", "instrument", "buy", "paper", "copy", "statutory"],
+            "keyphrase" : "Act or statutory instrument"
+        },
+        {
+            "question" : "Where can I find a Bill",
+            "answer" : "You can find Bills and information on amendments to Bills on the Houses of the Oireachtas website.",
+            "keywords" : ["Bill", "find"],
+            "keyphrase" : "find a Bill"
+        }
+    ]
+}
