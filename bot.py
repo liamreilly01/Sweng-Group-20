@@ -67,22 +67,26 @@ def findBestFitAsnwer(input):
         # check for exact matching key phrase --- highest priority
         for phrase in presetResponsesDictionary["PresetResponses"]:
             if phrase["keyphrase"].lower() == inputKeyPhrase[0].lower():
+                print("\nquestion we thinking you are asking -> " + phrase["question"])
                 return phrase["answer"]
     
     # check for no keypwords to avoid null pointer error
     if len(inputKeyWords) > 0:
         # check for matching key words, largest number of them is chosen --- lowest priority
-        closestMatch = [0, "no answer found"]
+        closestMatchAnswer = [0, "no answer found"]
+        closestMatchQuestion = [""]
         for words in presetResponsesDictionary["PresetResponses"]:
             currentCount = 0
             outputWordsList = words["keywords"]
-            for i in range(len(outputWordsList)):
-                for j in range(len(inputKeyWords)):
-                    if outputWordsList[i].lower() == inputKeyWords[j][0].lower():
+            for outkeyword in outputWordsList:
+                for inkeyword in inputKeyWords:
+                    if outkeyword.lower() == inkeyword[0].lower():
                         currentCount += 1
-                if currentCount > closestMatch[0]:
-                    closestMatch[1] = phrase["answer"]
-        return closestMatch[1]
+                if currentCount > closestMatchAnswer[0]:
+                    closestMatchAnswer[1] = phrase["answer"]
+                    closestMatchQuestion = phrase["question"]
+        print("\nquestion we thinking you are asking -> " + closestMatchQuestion)
+        return closestMatchAnswer[1]
     
     # no answer found so returning error outout
     return "no answer found"
@@ -113,8 +117,8 @@ def isFAQResponse(input):
 #-----basic input-output code to be added to a chat interface-----
 print(str(len(presetResponsesDictionary["PresetResponses"])) + " responses loaded from file")
 while True:
-    print("BOT: Hello! Do you a question (currently only from the FAQ list)")
+    print("\nBOT: Hello! Do you have a question (currently only from the FAQ list)")
     terminalInput = input('USER: ')
     if terminalInput != "":
-        print(processInput(terminalInput))
+        print("\n" + processInput(terminalInput))
 #-----------------------------------------------------------------
