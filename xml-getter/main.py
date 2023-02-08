@@ -1,8 +1,10 @@
+from io import BytesIO
 
 import requests
-import xml.etree.ElementTree as ET
+import lxml.etree
 import xmltodict
 import json
+from lxml import etree
 
 
 acts_2022 = []
@@ -12,12 +14,13 @@ for act_no in range(1, 53): #1 - 52 acts from 2022
     act_url = "https://www.irishstatutebook.ie/eli/2022/act/" + str(act_no) + "/enacted/en/xml"
     act_response = requests.get(act_url)
 
-    # Acts 2 and 4 have badly formed xml and cause errors
-    if act_no != 2 and act_no != 4 and act_response.status_code == 200:
-        act = ET.fromstring(act_response.content)
+    if act_response.status_code == 200:
+
+        parser = etree.XMLParser(recover=True)
+        act = etree.fromstring(act_response.content, parser=parser)
         acts_2022.append(act)
         print("Found and added act: " + str(act_no))
-        metadata = xmltodict.parse(ET.tostring(act.find('metadata')))
+        metadata = xmltodict.parse(etree.tostring(act.find('metadata')))
         s = json.dumps(metadata)
         file.write(s + "\n")
         print(s)
