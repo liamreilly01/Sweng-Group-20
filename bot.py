@@ -14,6 +14,8 @@ try:
         presetResponses.close()
 except:
     print("ERROR while opeing file PresetResponses.json")
+
+print(str(len(presetResponsesDictionary["PresetResponses"])) + " responses loaded from file")
 #------------------------------------------------------------------
 
 
@@ -58,7 +60,7 @@ def getKeyPhrase(input):
 #---------------------very bad priority algorithm------------------
 # !!!very basic priority algorithm!!!!!change to be better!!!
 def findBestFitAsnwer(input):
-    # save keyphrase and keywords of input
+    # save keyphrase and keywords of input to reduce amount of times they are called
     inputKeyPhrase = getKeyPhrase(input)
     inputKeyWords = getKeyWords(input)
     
@@ -68,6 +70,7 @@ def findBestFitAsnwer(input):
         for phrase in presetResponsesDictionary["PresetResponses"]:
             if phrase["keyphrase"].lower() == inputKeyPhrase[0].lower():
                 print("\nquestion we thinking you are asking -> " + phrase["question"])
+                print("found by matching key phrase")
                 return phrase["answer"]
     
     # check for no keypwords to avoid null pointer error
@@ -83,9 +86,11 @@ def findBestFitAsnwer(input):
                     if outkeyword.lower() == inkeyword[0].lower():
                         currentCount += 1
                 if currentCount > closestMatchAnswer[0]:
-                    closestMatchAnswer[1] = phrase["answer"]
-                    closestMatchQuestion = phrase["question"]
+                    closestMatchAnswer[1] = words["answer"]
+                    closestMatchAnswer[0] = currentCount
+                    closestMatchQuestion = words["question"]
         print("\nquestion we thinking you are asking -> " + closestMatchQuestion)
+        print("found by matching key words, amount of matches = " + str(closestMatchAnswer[0]))
         return closestMatchAnswer[1]
     
     # no answer found so returning error outout
@@ -115,7 +120,6 @@ def isFAQResponse(input):
 
 
 #-----basic input-output code to be added to a chat interface-----
-print(str(len(presetResponsesDictionary["PresetResponses"])) + " responses loaded from file")
 while True:
     print("\nBOT: Hello! Do you have a question (currently only from the FAQ list)")
     terminalInput = input('USER: ')
