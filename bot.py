@@ -10,7 +10,7 @@ presetResponses.close()
 #------------------------------------------------------------------
 
 
-#------------------------YAKE Keyword Exctration code-------------
+#------------------------YAKE Keyword Extraction code-------------
 def printKeyWords(input):
     keywords = getKeyWords(input)
     for kw in keywords:
@@ -48,7 +48,7 @@ def getKeyPhrase(input):
 #-----------------------------------------------------------------
 
 
-#---------------------very bad prority algorithm------------------
+#---------------------very bad priority algorithm------------------
 # !!!very basic priority algorithm!!!!!change to be better!!!
 def findBestFitAsnwer(input):
     # check for exact matching key phrase --- highest priority
@@ -57,7 +57,7 @@ def findBestFitAsnwer(input):
         if phrase["keyphrase"].lower() == inputkeyphrase.lower():
             return phrase["answer"]
     
-    # check for matching key words, largest number of them is chosen --- loweset priority
+    # check for matching key words, largest number of them is chosen --- lowest priority
     closestMatch = [0, " no answer found"]
     for phrase in presetResponsesDictionary["PresetResponses"]:
         currentCount = 0
@@ -96,7 +96,7 @@ def isFAQResponse(input):
 
 #-----basic input-output code to be added to a chat interface-----
 while True:
-    print("BOT: Hello! do you a question (currently only from the FAQ list)")
+    print("\nBOT: Hello! Do you a question (currently only from the FAQ list)")
     terminalInput = input('USER: ')
     if terminalInput != "":
         print(processInput(terminalInput))
