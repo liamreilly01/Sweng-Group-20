@@ -69,7 +69,7 @@ def findBestFitAsnwer(input):
         # check for exact matching key phrase --- highest priority
         for phrase in presetResponsesDictionary["PresetResponses"]:
             if phrase["keyphrase"].lower() == inputKeyPhrase[0].lower():
-                print("\nquestion we thinking you are asking -> " + phrase["question"])
+                print("\nquestion we think you are asking -> " + phrase["question"])
                 print("found by matching key phrase")
                 return phrase["answer"]
     
@@ -89,7 +89,7 @@ def findBestFitAsnwer(input):
                     closestMatchAnswer[1] = words["answer"]
                     closestMatchAnswer[0] = currentCount
                     closestMatchQuestion = words["question"]
-        print("\nquestion we thinking you are asking -> " + closestMatchQuestion)
+        print("\nquestion we think you are asking -> " + closestMatchQuestion)
         print("found by matching key words, amount of matches = " + str(closestMatchAnswer[0]))
         return closestMatchAnswer[1]
     
