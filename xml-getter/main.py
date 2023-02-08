@@ -1,7 +1,6 @@
 from io import BytesIO
 
 import requests
-import lxml.etree
 import xmltodict
 import json
 from lxml import etree
