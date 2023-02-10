@@ -5,7 +5,7 @@ import yake
 
 #--------------------------Load Json code--------------------------
 try:
-    presetResponses = open('PresetResponses.json', "r")
+    presetResponses = open('PresetResponses.json', "r", encoding="utf-8")
     try:
         presetResponsesDictionary = json.loads(presetResponses.read())
     except:
