@@ -9,7 +9,6 @@ def acts_to_json_format(title, description):
     return object
 
 
-acts_2022 = []
 file = open("acts.json", "w", encoding="utf-8")  # "w" = overwrite, "a" = append
 
 for act_no in range(1, 53):  # 1 - 52 acts from 2022
