@@ -4,13 +4,22 @@ import yake
 
 
 #--------------------------Load Json code--------------------------
-presetResponses = open('PresetResponses.json', "r", encoding="utf-8")
-presetResponsesDictionary = json.loads(presetResponses.read())
-presetResponses.close()
+try:
+    presetResponses = open('PresetResponses.json', "r")
+    try:
+        presetResponsesDictionary = json.loads(presetResponses.read())
+    except:
+        print("ERROR while loading and reading file PresetResponses.json")
+    finally:
+        presetResponses.close()
+except:
+    print("ERROR while opeing file PresetResponses.json")
+
+print(str(len(presetResponsesDictionary["PresetResponses"])) + " responses loaded from file")
 #------------------------------------------------------------------
 
 
-#------------------------YAKE Keyword Exctration code-------------
+#------------------------YAKE Keyword Extraction code-------------
 def printKeyWords(input):
     keywords = getKeyWords(input)
     for kw in keywords:
@@ -29,7 +38,7 @@ def getKeyWords(input):
 
     if len(keywords) > 0:
         return keywords
-    return [""]
+    return []
 
 def getKeyPhrase(input):
     language = "en"
@@ -44,32 +53,48 @@ def getKeyPhrase(input):
 
     if len(keywords) > 0:
         return keywords[0]
-    return [""]
+    return []
 #-----------------------------------------------------------------
 
 
-#---------------------very bad prority algorithm------------------
+#---------------------very bad priority algorithm------------------
 # !!!very basic priority algorithm!!!!!change to be better!!!
 def findBestFitAsnwer(input):
-    # check for exact matching key phrase --- highest priority
-    for phrase in presetResponsesDictionary["PresetResponses"]:
-        inputkeyphrase = getKeyPhrase(input)[0]
-        if phrase["keyphrase"].lower() == inputkeyphrase.lower():
-            return phrase["answer"]
+    # save keyphrase and keywords of input to reduce amount of times they are called
+    inputKeyPhrase = getKeyPhrase(input)
+    inputKeyWords = getKeyWords(input)
     
-    # check for matching key words, largest number of them is chosen --- loweset priority
-    closestMatch = [0, " no answer found"]
-    for phrase in presetResponsesDictionary["PresetResponses"]:
-        currentCount = 0
-        for i in range(len(phrase["keywords"])):
-            list = phrase["keywords"]
-            keywordList = getKeyWords(input)
-            for j in range(len(keywordList)):
-                if list[i].lower() == keywordList[j][0].lower():
-                    currentCount += 1
-            if currentCount > closestMatch[0]:
-                closestMatch[1] = phrase["answer"]
-    return closestMatch[1]
+    # check for no keypharse to avoid null pointer error
+    if len(inputKeyPhrase) > 0:
+        # check for exact matching key phrase --- highest priority
+        for phrase in presetResponsesDictionary["PresetResponses"]:
+            if phrase["keyphrase"].lower() == inputKeyPhrase[0].lower():
+                print("\nquestion we think you are asking -> " + phrase["question"])
+                print("found by matching key phrase")
+                return phrase["answer"]
+    
+    # check for no keypwords to avoid null pointer error
+    if len(inputKeyWords) > 0:
+        # check for matching key words, largest number of them is chosen --- lowest priority
+        closestMatchAnswer = [0, "no answer found"]
+        closestMatchQuestion = [""]
+        for words in presetResponsesDictionary["PresetResponses"]:
+            currentCount = 0
+            outputWordsList = words["keywords"]
+            for outkeyword in outputWordsList:
+                for inkeyword in inputKeyWords:
+                    if outkeyword.lower() == inkeyword[0].lower():
+                        currentCount += 1
+                if currentCount > closestMatchAnswer[0]:
+                    closestMatchAnswer[1] = words["answer"]
+                    closestMatchAnswer[0] = currentCount
+                    closestMatchQuestion = words["question"]
+        print("\nquestion we think you are asking -> " + closestMatchQuestion)
+        print("found by matching key words, amount of matches = " + str(closestMatchAnswer[0]))
+        return closestMatchAnswer[1]
+    
+    # no answer found so returning error outout
+    return "no answer found"
 #-----------------------------------------------------------------
 
 
@@ -96,8 +121,8 @@ def isFAQResponse(input):
 
 #-----basic input-output code to be added to a chat interface-----
 while True:
-    print("BOT: Hello! do you a question (currently only from the FAQ list)")
+    print("\nBOT: Hello! Do you have a question (currently only from the FAQ list)")
     terminalInput = input('USER: ')
     if terminalInput != "":
-        print(processInput(terminalInput))
+        print("\n" + processInput(terminalInput))
 #-----------------------------------------------------------------
