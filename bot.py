@@ -15,7 +15,7 @@ try:
 except:
     print("ERROR while opeing file PresetResponses.json")
 
-print(str(len(presetResponsesDictionary["PresetResponses"])) + " responses loaded from file")
+print(str(len(presetResponsesDictionary["PresetResponses"])) + " responses loaded from file\n")
 #------------------------------------------------------------------
 
 
@@ -73,7 +73,7 @@ def findBestFitAsnwer(input):
                 print("found by matching key phrase")
                 return phrase["answer"]
     
-    # check for no keypwords to avoid null pointer error
+    # check for no keywords to avoid null pointer error
     if len(inputKeyWords) > 0:
         # check for matching key words, largest number of them is chosen --- lowest priority
         closestMatchAnswer = [0, "no answer found"]
@@ -91,38 +91,53 @@ def findBestFitAsnwer(input):
                     closestMatchQuestion = words["question"]
         print("\nquestion we think you are asking -> " + str(closestMatchQuestion))
         print("found by matching key words, amount of matches = " + str(closestMatchAnswer[0]))
-        return closestMatchAnswer[1]
-    
-    # no answer found so returning error outout
+
+        if (closestMatchAnswer[0] == 0):
+            return "no answer found"
+        else:
+            return closestMatchAnswer[1]
+
     return "no answer found"
+    
+
 #-----------------------------------------------------------------
 
 
 #----Hard coded FAQ reply code and algorithm output when hardcode fails----
 def processInput(input):
-    print("keywords and phrase: ")
+    print("\nkeywords and phrase: ")
     printKeyWords(input)
-    if (isFAQResponse(input) != False):
-        return isFAQResponse(input)
+    if (isFAQResponse(input)):
+        print("[Question matches preset perfectly, giving preset answer]")
+        return getFAQResponse(input)
     
-    print('I dont understand so i will try to use my keyword extraction and analysis to make a guess bassed on my preset answers: ')
+    print('[I do not understand so I will try to use my keyword extraction and analysis to make a guess based on my preset answers]')
     return findBestFitAsnwer(input)
 
-
+# determines whether a question is a perfect match to an FAQ
 def isFAQResponse(input):
     for phrase in presetResponsesDictionary["PresetResponses"]:
         if phrase["question"].lower() == input.lower():
-            print("question matches preset one perfectly, giving wepset answer: ")
-            print(phrase["answer"])
+            return True
+    return False
+
+# returns associated answer to perfectly matched FAQ
+def getFAQResponse(input):
+    for phrase in presetResponsesDictionary["PresetResponses"]:
+        if phrase["question"].lower() == input.lower():
             return phrase["answer"]
     return False
 #-----------------------------------------------------------------
 
 
 #-----basic input-output code to be added to a chat interface-----
-while True:
-    print("\nBOT: Hello! Do you have a question (currently only from the FAQ list)")
-    terminalInput = input('USER: ')
-    if terminalInput != "":
-        print("\n" + processInput(terminalInput))
+print("BOT  : Hello! How may I help today? (Only FAQ)")
+terminalInput = input('USER : ')
+
+while (terminalInput != ""):
+    print(processInput(terminalInput))
+    print("\nBOT  : Do you have any other questions? (Only FAQ)")
+    terminalInput = input('USER : ')
+
+print("\nBOT  : I hope I was able to help. Goodbye!")
 #-----------------------------------------------------------------

@@ -3,7 +3,7 @@ test push - Declan
 
 test push - Brendan
 
-## Json file explaination
+## Json file explanation
 each JSON object refers to a specific FAQ from the eISB website (https://www.irishstatutebook.ie/eli/faq.html)
 
 "keywords" and "keyphrases" attributes are taken from yake's interpretation.
