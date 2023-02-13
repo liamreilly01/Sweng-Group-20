@@ -1,7 +1,10 @@
 import os
 import json
 import yake
+# import nltk                   # Uncomment these 2 lines for your first time running the program,
+# nltk.download('wordnet')      # and do "pip install nltk". You can comment them out again as they won't be needed.
 
+from nltk.corpus import wordnet
 
 #--------------------------Load Json code--------------------------
 try:
@@ -64,7 +67,7 @@ def findBestFitAsnwer(input):
     inputKeyPhrase = getKeyPhrase(input)
     inputKeyWords = getKeyWords(input)
     
-    # check for no keypharse to avoid null pointer error
+    # check for no keyphrase to avoid null pointer error
     if len(inputKeyPhrase) > 0:
         # check for exact matching key phrase --- highest priority
         for phrase in presetResponsesDictionary["PresetResponses"]:
@@ -78,17 +81,19 @@ def findBestFitAsnwer(input):
         # check for matching key words, largest number of them is chosen --- lowest priority
         closestMatchAnswer = [0, "no answer found"]
         closestMatchQuestion = [""]
-        for words in presetResponsesDictionary["PresetResponses"]:
+        for presetResponse in presetResponsesDictionary["PresetResponses"]:
             currentCount = 0
-            outputWordsList = words["keywords"]
+            outputWordsList = presetResponse["keywords"]
             for outkeyword in outputWordsList:
                 for inkeyword in inputKeyWords:
-                    if outkeyword.lower() == inkeyword[0].lower():
-                        currentCount += 1
+                    inSynonyms = getSynonyms(inkeyword[0])
+                    for inSynonym in inSynonyms:
+                        if outkeyword.lower() == inSynonym.lower():
+                            currentCount += 1
                 if currentCount > closestMatchAnswer[0]:
-                    closestMatchAnswer[1] = words["answer"]
+                    closestMatchAnswer[1] = presetResponse["answer"]
                     closestMatchAnswer[0] = currentCount
-                    closestMatchQuestion = words["question"]
+                    closestMatchQuestion = presetResponse["question"]
         print("\nquestion we think you are asking -> " + str(closestMatchQuestion))
         print("found by matching key words, amount of matches = " + str(closestMatchAnswer[0]))
 
@@ -130,6 +135,24 @@ def getFAQResponse(input):
 #-----------------------------------------------------------------
 
 
+#-----returns a unique list of synonyms of a given word-----------
+def getSynonyms(input):
+    synonyms = []
+
+    if (len(input) == 0):
+        return synonyms
+
+    for synonym in wordnet.synsets(input):  # for each synset of input
+        for lemma in synonym.lemmas():          # for each lemma of each synset of input
+            synonyms.append(lemma.name())           # add to synonym list
+
+    if (len(synonyms) == 0):
+        synonyms.append(input)
+
+    return set(synonyms) # set() prints out the distinct elements of the list
+#-----------------------------------------------------------------
+
+
 #-----basic input-output code to be added to a chat interface-----
 print("BOT  : Hello! How may I help today? (Only FAQ)")
 terminalInput = input('USER : ')
@@ -141,3 +164,4 @@ while (terminalInput != ""):
 
 print("\nBOT  : I hope I was able to help. Goodbye!")
 #-----------------------------------------------------------------
+
