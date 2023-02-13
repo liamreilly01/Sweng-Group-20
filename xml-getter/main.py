@@ -9,13 +9,14 @@ def acts_to_json_format(title, description):
     return object
 
 
-file = open("acts.json", "w", encoding="utf-8")  # "w" = overwrite, "a" = append
+def fetch_acts(year):
+    file = open("acts.json", "w", encoding="utf-8")  # "w" = overwrite, "a" = append
 
-for act_no in range(1, 53):  # 1 - 52 acts from 2022
-    act_url = "https://www.irishstatutebook.ie/eli/2022/act/" + str(act_no) + "/enacted/en/html"
+    act_url = "https://www.irishstatutebook.ie/eli/" + str(year) + "/act/1/enacted/en/html"
     act_response = requests.get(act_url)
+    act_no = 1
 
-    if act_response.status_code == 200:
+    while act_response.status_code == 200:
         parser = etree.HTMLParser(recover=True)
         act = act_response.content
         tree = etree.parse(BytesIO(act), parser)
@@ -27,7 +28,12 @@ for act_no in range(1, 53):  # 1 - 52 acts from 2022
         json_object = acts_to_json_format(act_title.text, act_description)
         print("GENERATED JSON OBJECT: " + json_object)
         file.write(json_object + "\n")
-    else:  # bad status code, couldn't retrieve file for some reason
-        print("Couldn't find act:" + str(act_no) + "   Status code: " + str(act_response.status_code))
 
-file.close()
+        act_no += 1
+        act_url = "https://www.irishstatutebook.ie/eli/" + str(year) + "/act/" + str(act_no) + "/enacted/en/html"
+        act_response = requests.get(act_url)
+    file.close()
+
+fetch_acts(2022)
+
+
