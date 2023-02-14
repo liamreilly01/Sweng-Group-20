@@ -1,0 +1,50 @@
+[
+   {
+    "response_type": "question",
+    "user_input": ["I", "dont", "understand", "how ", "to", "read", "the", "abbreviations", "in", "the", "table", "of", "amendments", "where", "can", "i", "find", "out", "what", "they", "mean"],
+    "bot_response": "You can visit the glossary. https://www.irishstatutebook.ie/eli/abbrev.html",
+    "required_words": ["understand", "read", "abbreviations", "where", "find", "mean"]
+  },
+   {
+    "response_type": "question",
+    "user_input": ["Who", "can", "I", "contact", "for", "legal", "advice"],
+    "bot_response": "You may be able to get information or assistance from the Citizens' Information Board (www.citizensinformation.ie), or you may need professional legal advice.",
+    "required_words": ["who", "contact", "advice"]
+  },
+  {
+    "response_type": "question",
+    "user_input": ["what", "has", "happened", "to", "the", "legislation", "directory"],
+    "bot_response": "Legislative amendments were previously held in section of the eISB known: Legislation Directory. The information from the Legislation Directory has now been integrated into relevant parts of the site",
+    "required_words": ["directory", "legislation", "happened"]
+  },
+  {
+    "response_type": "question",
+    "user_input" : ["Where", "can", "i", "find", "a", "bill"],
+    "bot_response" : "You can find Bills and information on amendments to Bills on the Houses of the Oireachtas website. https://www.oireachtas.ie/en/bills/",
+    "required_words" : ["find", "where", "bill"]
+  },
+  {
+    "response_type": "question",
+    "user_input" : ["Why", "is", "the", "legislation", "I’m", "looking", "for", "not", "on", "this", "site"],
+    "bot_response" : "Some legislation dating from before 1922 is not published on the site because it has either been repealed or is not available in electronic format. Very recent Acts or statutory instruments may not yet have been published (see answer to previous question). Only statutory instruments to which the Statutory Instruments Act 1947 primarily apply are included on the site. In relation to statutory instruments to which the Statutory Instruments Act 1947 does not apply, including bye-laws made by local authorities, users should contact the body who made the statutory instrument concerned.",
+    "required_words" : ["site", "legislation", "not"]
+  },
+  {
+    "response_type": "question",
+    "user_input" : ["Will", "I", "find", "new", "legislation", "on", "the", "eSIB"],
+    "bot_response" : "New Acts and statutory instruments are published as soon as possible after they have been notified in the Iris Oifigiuil and we have received them from the Houses of the Oireachtas and Government Publications. The homepage of the eISB contains information about the legislation most recently published in PDF format.",
+    "required_words" : ["find","new", "legislation"]
+  },
+  {
+    "response_type": "question",
+    "user_input": ["who", "produces", "amendment", "information", "and", "revised", "acts"],
+    "bot_response": "They are produced by the Law Reform Commission.",
+    "required_words": ["who", "produces", "revised", "amendment"]
+  },
+  {
+    "response_type": "question",
+    "user_input": ["How", "often", "is", "the", "amendment", "and", "the", "commencement", "updated"],
+    "bot_response": "In general tables of amendments, commencements and SIs made under Acts are updated weekly, subject to the availability of new legislation. You can find the current date up to which the tables are updated on each relevant page.",
+    "required_words": ["often", "amendment", "updated"]
+  }
+]
