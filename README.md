@@ -3,17 +3,17 @@
 Group members:
 
 3rd year students:
-Mylana Bulat
-Liam Reilly
-William Walsh-Dowd 
+Mylana Bulat,
+Liam Reilly,
+William Walsh-Dowd, 
 Conall O Toole
 
 2nd year students:
-Grace Bokunde
-Cillian French
-Mahir Masud
-Declan McCabe
-Brendan McCann
+Grace Bokunde,
+Cillian French,
+Mahir Masud,
+Declan McCabe,
+Brendan McCann,
 Jake McKenna
 
 Project discription:
