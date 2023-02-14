@@ -1,5 +1,3 @@
 # Sweng-Group-20
-test push - Declan
-
-test push - Brendan
+Just a basic chatbot with static responses using json file to practice working with python.
 
