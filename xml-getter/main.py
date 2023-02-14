@@ -21,9 +21,9 @@ def fetch_acts(year):
         act = act_response.content
         tree = etree.parse(BytesIO(act), parser)
         act_title = tree.find("head/title")
-        if act_no != 44:
+        try:
             act_description = tree.find("head/meta[@property='eli:description']").attrib["content"]
-        else:
+        except:
             act_description = "Error: description not found"
         json_object = acts_to_json_format(act_title.text, act_description)
         print("GENERATED JSON OBJECT: " + json_object)
