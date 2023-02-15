@@ -1,19 +1,3 @@
-## To run the current version of chatbot
-
-run the following commands in the terminal: 
-> pip install nltk
-> pip install yake
-> Python3 -m nltk.downloader wordnet
-> Python3 bot.py
-
-## To run the current version of xml-getter
-
-go to the xml getter directory 
-
-> pip install lxml
-> Python3 main.py
-
-=========================================================================================
 # Sweng-Group-20
 
 Group members:
@@ -39,8 +23,27 @@ There is a growing demand for accessible and user-friendly ways of accessing leg
 In the first two releases we aim to train the bot to answer general questions about the Irish law and legal system through pointing out a link using trigger words. 
 Potentially the bot will be able to act as a human lawyer, answering user questions with a generated reply that would clarify the topic for the user. 
 
-=========================================================================================================================================
-## JSON File Documentation
+## To run the current version of chatbot
+
+run the following commands in the terminal: 
+> pip install nltk
+
+> pip install yake
+
+> Python3 -m nltk.downloader wordnet
+
+> Python3 bot.py
+
+## To run the current version of xml-getter
+
+go to the xml getter directory 
+
+> pip install lxml
+
+> Python3 main.py
+
+
+# JSON File Documentation
 each JSON object refers to a specific FAQ from the eISB website (https://www.irishstatutebook.ie/eli/faq.html)
 
 "keywords" and "keyphrases" attributes are taken from yake's interpretation.
