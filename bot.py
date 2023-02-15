@@ -1,8 +1,7 @@
 import os
 import json
 import yake
-# import nltk                   # Uncomment these 2 lines for your first time running the program,
-# nltk.download('wordnet')      # and do "pip install nltk". You can comment them out again as they won't be needed.
+import nltk
 
 from nltk.corpus import wordnet
 

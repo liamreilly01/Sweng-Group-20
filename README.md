@@ -1,4 +1,4 @@
-...... To run the current version of chatbot ............................................
+## To run the current version of chatbot
 
 run the following commands in the terminal: 
 > pip install nltk
@@ -6,7 +6,7 @@ run the following commands in the terminal:
 > Python3 -m nltk.downloader wordnet
 > Python3 bot.py
 
-...... To run the current version of xml-getter .........................................
+## To run the current version of xml-getter
 
 go to the xml getter directory 
 
