@@ -46,4 +46,6 @@ jobs:
 
         pip install pytest
 
+        pip install yake
+
         pytest tests.py
