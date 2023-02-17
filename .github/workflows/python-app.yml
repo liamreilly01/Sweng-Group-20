@@ -48,4 +48,9 @@ jobs:
 
         pip install yake
 
+        pip install nltk
+        Python3 -m nltk.downloader wordnet
+        
+        pip install lxml
+
         pytest tests.py
