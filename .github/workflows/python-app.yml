@@ -11,7 +11,9 @@ on:
 
     - 'bot.py' 
 
-    - 'lint.py' 
+    - 'lint.py'
+
+    - 'tests.py'
  
 
 jobs: 
