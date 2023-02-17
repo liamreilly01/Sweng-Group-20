@@ -59,12 +59,16 @@ def fetch_acts(year):
 
     while act_response.status_code == 200:
         soup = BeautifulSoup(act_response.content, "xml")
-        title = soup.metadata.title
+        soup_title = soup.metadata.title
         description = soup.find("act").find("frontmatter").find("p", class_="0 8 0 left 1 0", recursive=False)
         replace_accents(description)
+        replace_accents(soup_title)  # 2022 Act 33 does not use fada tags. e.g. $afada instead of <afada>
+        title = soup_title.text
+        if act_no == 33:
+            title = title.replace("&ifada;", "í")
+            title = title.replace("&afada;", "á")
         print("ACT NO " + str(act_no) + ": " + description.text)
-        replace_accents(title) # 2022 Act 33 does not use fada tags. e.g. $afada instead of <afada>
-        print(title.text)
+        print(title)
 
         act_no += 1
         act_url = "https://www.irishstatutebook.ie/eli/" + str(year) + "/act/" + str(act_no) + "/enacted/en/xml"
