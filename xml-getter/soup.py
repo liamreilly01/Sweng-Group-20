@@ -60,6 +60,9 @@ def fetch_acts(year):
     while act_response.status_code == 200:
         soup = BeautifulSoup(act_response.content, "xml")
         title = soup.metadata.title
+        description = soup.find("act").find("frontmatter").find("p", class_="0 8 0 left 1 0", recursive=False)
+        replace_accents(description)
+        print("ACT NO " + str(act_no) + ": " + description.text)
         replace_accents(title) # 2022 Act 33 does not use fada tags. e.g. $afada instead of <afada>
         print(title.text)
 
