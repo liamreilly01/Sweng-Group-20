@@ -153,14 +153,18 @@ def getSynonyms(input):
 
 
 #-----basic input-output code to be added to a chat interface-----
-print("BOT  : Hello! How may I help today? (Only FAQ)")
-terminalInput = input('USER : ')
-
-while (terminalInput != ""):
-    print(processInput(terminalInput))
-    print("\nBOT  : Do you have any other questions? (Only FAQ)")
+def main():
+    print("BOT  : Hello! How may I help today? (Only FAQ)")
     terminalInput = input('USER : ')
 
-print("\nBOT  : I hope I was able to help. Goodbye!")
+    while (terminalInput != ""):
+        print(processInput(terminalInput))
+        print("\nBOT  : Do you have any other questions? (Only FAQ)")
+        terminalInput = input('USER : ')
+
+    print("\nBOT  : I hope I was able to help. Goodbye!")
 #-----------------------------------------------------------------
+
+if __name__ == "__main__":
+    main()
 
