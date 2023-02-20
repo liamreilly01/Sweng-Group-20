@@ -53,6 +53,8 @@ def textPreProcessing(input):
     for t in tokens:
         counter += 1
         print("word " + str(counter) + ": '" + str(t) + "'")
+        if len(t) == 0:
+            print("(word was all punctuation)")
 
     # 5. lemmatize
     print("\nLemmatize:")
