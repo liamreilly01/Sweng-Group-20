@@ -72,8 +72,10 @@ def getWordnetPos(word):
 
 
 # main for testing
+def main():
+    text = input("input: ")
+    list = textPreProcessing(text)
 
 
-
-text = input("input: ")
-list = textPreProcessing(text)
+if __name__ == "__main__":
+    main()
