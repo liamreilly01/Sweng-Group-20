@@ -18,7 +18,7 @@ article.nlp()
 corpus = article.text
 
 #print the articles text
-#print (corpus)
+# print (corpus)
 
 #tokenization
 text = corpus
