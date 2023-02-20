@@ -25,17 +25,21 @@ def textPreProcessing(input):
 
     # 2. Tokenizing
     # still a minor bug with whitespaces (e.g. try: "???????      can you help me?")
-    tokens = input.split(" ")
+    tokens = input.split()
 
     print("\nTokenize:")
+    counter = 0
     for t in tokens:
-        print(t)
+        counter += 1
+        print("word " + str(counter) + ": '" + str(t) + "'")
 
     # 3. Stopword Removal
     tokens = [t for t in tokens if t not in stopwordsList]
     print("\nstopword removal:")
+    counter = 0
     for t in tokens:
-        print(t)
+        counter += 1
+        print("word " + str(counter) + ": '" + str(t) + "'")
 
     # 4. Punctuation Removal
     i = 0
@@ -45,8 +49,10 @@ def textPreProcessing(input):
         i += 1
 
     print("\nPunctuation Removal:")
+    counter = 0
     for t in tokens:
-        print(t)
+        counter += 1
+        print("word " + str(counter) + ": '" + str(t) + "'")
 
     # 5. lemmatize
     print("\nLemmatize:")
@@ -55,7 +61,7 @@ def textPreProcessing(input):
     for i in range (len(tokens)):
         word = tokens[i]
         tokens[i] = lemmatizer.lemmatize(word, getWordnetPos(word))
-        print(tokens[i])
+        print("word " + str(i+1) + ": '" + str(tokens[i]) + "'")
 
     return tokens
 
