@@ -54,6 +54,15 @@ def acts_to_json_format(title, description):
     object = "\t\t\t{\n\t\t\t\t\"title\": \"" + title + "\",\n\t\t\t\t\"description\": \"" + description + "\"\t\n\t\t\t}"
     return object
 
+def get_details(soup):
+    sect_list = soup.find("body").findAll("sect")
+    for sect in sect_list:
+        if "Amendment" in sect.find("title").text:
+            print(sect.find("title").text)
+            print("FOUND AMENDMENT PARAGRAPH (DON'T WANT THIS)")
+
+    #print(sect_list)
+
 def fetch_acts(year):
     file = open("acts.json", "w", encoding="utf-8")  # "w" = overwrite, "a" = append
     file.write("{\n\t\"" + str(year) + "\": {\n\t\t\"acts\": [\n")
@@ -74,6 +83,8 @@ def fetch_acts(year):
         replace_accents(description)
         replace_accents(soup_title)  # 2022 Act 33 does not use fada tags. e.g. $afada instead of <afada>
         title = soup_title.text
+        details = get_details(soup)
+
         if act_no == 33:
             title = title.replace("&ifada;", "í")
             title = title.replace("&afada;", "á")
