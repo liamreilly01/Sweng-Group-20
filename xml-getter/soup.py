@@ -57,9 +57,9 @@ def acts_to_json_format(title, description):
 def get_details(soup):
     sect_list = soup.find("body").findAll("sect")
     for sect in sect_list:
-        if "Amendment" in sect.find("title").text:
+        if "Amendment" not in sect.find("title").text:
             print(sect.find("title").text)
-            print("FOUND AMENDMENT PARAGRAPH (DON'T WANT THIS)")
+            print("Found non-amendment paragraph")
 
     #print(sect_list)
 
