@@ -22,8 +22,8 @@ nltk.download('punkt', quiet=True)
 acts = open('Acts.json', "r", encoding='utf-8-sig')
 actsDictionary = json.loads(acts.read())
 acts.close()
-corpus = actsDictionary
-print(corpus)
+corpus = str(actsDictionary)
+#print(corpus)
 
 #print the articles text
 # print (corpus)
@@ -77,7 +77,7 @@ def bot_response(user_input):
             bot_response = bot_response+' '+sentence_list[index[i]]
             response_flag = 1
             j=j+1
-        if j>2:
+        if j>1:
             break
 
     if response_flag == 0:
