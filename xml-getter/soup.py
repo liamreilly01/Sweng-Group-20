@@ -56,10 +56,16 @@ def acts_to_json_format(title, description):
 
 def get_details(soup):
     sect_list = soup.find("body").findAll("sect")
+    details = {}
     for sect in sect_list:
-        if "Amendment" not in sect.find("title").text:
+        if "Amendment" and "amendment" not in sect.find("title").text: #probably include definitions here
             print(sect.find("title").text)
             print("Found non-amendment paragraph")
+            paragraph = sect.findChildren()#"a", recursive=True)
+            paragraphText = ""
+            for line in paragraph:
+                print(line.text)
+                paragraphText = paragraphText + " " + line.text
 
     #print(sect_list)
 
@@ -83,7 +89,8 @@ def fetch_acts(year):
         replace_accents(description)
         replace_accents(soup_title)  # 2022 Act 33 does not use fada tags. e.g. $afada instead of <afada>
         title = soup_title.text
-        details = get_details(soup)
+        if act_no == 1:
+            details = get_details(soup)
 
         if act_no == 33:
             title = title.replace("&ifada;", "í")
@@ -91,8 +98,8 @@ def fetch_acts(year):
 
         json_object = acts_to_json_format(title, description.text)
         file.write(json_object)
-        print("ACT NO " + str(act_no) + ": " + description.text)
-        print(title)
+        #print("ACT NO " + str(act_no) + ": " + description.text)
+        #print(title)
 
         act_no += 1
         act_url = "https://www.irishstatutebook.ie/eli/" + str(year) + "/act/" + str(act_no) + "/enacted/en/xml"
