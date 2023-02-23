@@ -1,4 +1,6 @@
-from newspaper import Article
+#from newspaper import Article
+import os
+import json
 import random
 import string
 import nltk
@@ -11,11 +13,17 @@ warnings.filterwarnings('ignore')
 nltk.download('punkt', quiet=True)
 
 #get article
-article = Article('https://www.medicalnewstoday.com/articles/323648#causes')
-article.download()
-article.parse()
-article.nlp()
-corpus = article.text
+#article = Article('https://www.medicalnewstoday.com/articles/323648#causes')
+#article.download()
+#article.parse()
+#article.nlp()
+#corpus = article.text
+ 
+acts = open('Acts.json', "r", encoding='utf-8-sig')
+actsDictionary = json.loads(acts.read())
+acts.close()
+corpus = actsDictionary
+print(corpus)
 
 #print the articles text
 # print (corpus)
