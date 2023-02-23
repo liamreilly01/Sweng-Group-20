@@ -1,7 +1,7 @@
+import json
 from io import BytesIO
 import requests
 from lxml import etree
-from main import acts_to_json_format
 from bs4 import BeautifulSoup
 
 def replace_accents(tag):
@@ -70,18 +70,25 @@ def get_details(soup):
     #print(sect_list)
 
 def fetch_acts(year):
-    file = open("acts.json", "w", encoding="utf-8")  # "w" = overwrite, "a" = append
-    file.write("{\n\t\"" + str(year) + "\": {\n\t\t\"acts\": [\n")
+    try:
+        with open("acts.json") as f:
+            new_data = json.load(f)
+    except:
+        new_data = {
+            str(year): {
+                "acts": []
+            }
+        }
 
     act_url = "https://www.irishstatutebook.ie/eli/" + str(year) + "/act/1/enacted/en/xml"
     act_response = requests.get(act_url)
     act_no = 1
-    first = True
     while act_response.status_code == 200:
-        if not first:
-            file.write(",\n")
-        else:
-            first = False
+        if str(year) not in new_data:
+            new_data[str(year)] = {}
+            new_data[str(year)]["acts"] = []
+            print(new_data[str(year)])
+        new_data[str(year)]["acts"].append({})
 
         soup = BeautifulSoup(act_response.content, "xml")
         soup_title = soup.metadata.title
@@ -97,7 +104,8 @@ def fetch_acts(year):
             title = title.replace("&afada;", "á")
 
         json_object = acts_to_json_format(title, description.text)
-        file.write(json_object)
+        new_data[str(year)]["acts"][act_no - 1]["title"] = title
+        new_data[str(year)]["acts"][act_no - 1]["description"] = description.text
         #print("ACT NO " + str(act_no) + ": " + description.text)
         #print(title)
 
@@ -105,8 +113,10 @@ def fetch_acts(year):
         act_url = "https://www.irishstatutebook.ie/eli/" + str(year) + "/act/" + str(act_no) + "/enacted/en/xml"
         act_response = requests.get(act_url)
 
-    file.write("\n\t\t]\n\t}\n}")
-    file.close()
+    print(new_data)
+
+    with open("acts.json", 'w') as f:
+        json.dump(new_data, f, indent=4, ensure_ascii=False)
 
 
 fetch_acts(2022)
