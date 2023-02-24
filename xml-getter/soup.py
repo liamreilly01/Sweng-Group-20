@@ -104,6 +104,7 @@ def fetch_acts(year):
             title = title.replace("&afada;", "á")
 
         json_object = acts_to_json_format(title, description.text)
+        new_data[str(year)]["acts"][act_no - 1]["url"] = act_url
         new_data[str(year)]["acts"][act_no - 1]["title"] = title
         new_data[str(year)]["acts"][act_no - 1]["description"] = description.text
         #print("ACT NO " + str(act_no) + ": " + description.text)
