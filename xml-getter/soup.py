@@ -56,17 +56,18 @@ def acts_to_json_format(title, description):
 
 def get_details(soup):
     sect_list = soup.find("body").findAll("sect")
-    details = {}
+    details = ""
     for sect in sect_list:
-        if "Amendment" and "amendment" not in sect.find("title").text: #probably include definitions here
-            print(sect.find("title").text)
-            print("Found non-amendment paragraph")
+        if "Amendment" and "amendment" and "Definitions" not in sect.find("title").text: #probably include definitions here
+            #print(sect.find("title").text)
+            #print("Found non-amendment paragraph")
             paragraph = sect.findChildren()#"a", recursive=True)
-            paragraphText = ""
             for line in paragraph:
-                print(line.text)
-                paragraphText = paragraphText + " " + line.text
-
+                    if line != "":
+                        print(line.text)
+                        #print("PRINTING LINE:" + line.text)
+                        details += " " + line.text
+    print(details)
     #print(sect_list)
 
 def fetch_acts(year):
