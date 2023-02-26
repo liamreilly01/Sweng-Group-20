@@ -68,7 +68,7 @@ def get_details(soup):
                         #print("PRINTING LINE:" + line.text)
                         details += " " + line.text
     print(details)
-    #print(sect_list)
+    return details
 
 def fetch_acts(year):
     try:
