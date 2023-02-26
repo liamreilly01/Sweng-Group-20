@@ -61,7 +61,7 @@ def get_details(soup):
         if "Amendment" and "amendment" and "Definitions" not in sect.find("title").text: #probably include definitions here
             #print(sect.find("title").text)
             #print("Found non-amendment paragraph")
-            paragraph = sect.findChildren()#"a", recursive=True)
+            paragraph = sect.findChildren() #"a", recursive=True)
             for line in paragraph:
                     if line != "":
                         print(line.text)
@@ -97,8 +97,7 @@ def fetch_acts(year):
         replace_accents(description)
         replace_accents(soup_title)  # 2022 Act 33 does not use fada tags. e.g. $afada instead of <afada>
         title = soup_title.text
-        if act_no == 1:
-            details = get_details(soup)
+        details = get_details(soup)  # not currently being outputted to file
 
         if act_no == 33:
             title = title.replace("&ifada;", "í")
