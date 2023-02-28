@@ -77,7 +77,7 @@ def bot_response(user_input):
             bot_response = bot_response+' '+sentence_list[index[i]]
             response_flag = 1
             j=j+1
-        if j>1:
+        if j>0:
             break
 
     if response_flag == 0:
