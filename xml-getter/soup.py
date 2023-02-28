@@ -72,7 +72,7 @@ def get_details(soup):
 
 def fetch_acts(year):
     try:
-        with open("acts.json") as f:
+        with open("acts.json", encoding='utf-8') as f:
             new_data = json.load(f)
     except:
         new_data = {
@@ -116,7 +116,7 @@ def fetch_acts(year):
 
     print(new_data)
 
-    with open("acts.json", 'w') as f:
+    with open("acts.json", 'w', encoding='utf-8') as f:
         json.dump(new_data, f, indent=4, ensure_ascii=False)
 
 
