@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1>2022 Acts database</h1>
+<ul>
+    {% for x in mylegislations %}
+    <p>{{ x.title }} {{ x.url }} {{ x.description }}</p>
+    {% endfor %}
+
+</ul>
+</body>
+</html>
