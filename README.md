@@ -45,6 +45,7 @@ run the following command in the terminal:
 
 > Once you run the server you will be given a link like http://127.0.0.1:8000 in your terminal
 > Add /admin to the url like so: http://127.0.0.1:8000/admin which will then prompt you to log in 
+> Your username will just be your name and your password is the beginning part of your email in all caps 
 
 
 
