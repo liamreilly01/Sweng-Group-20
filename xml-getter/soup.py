@@ -64,9 +64,9 @@ def get_details(soup):
             paragraph = sect.findChildren() #"a", recursive=True)
             for line in paragraph:
                     if line != "":
-                        print(line.text)
-                        #print("PRINTING LINE:" + line.text)
+                        #print("PRINTING LINE:" + line.text) #UNCOMMENT LINE
                         details += " " + line.text
+    details = details.replace("\n", "\\n")
     print(details)
     return details
 
