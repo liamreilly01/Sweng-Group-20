@@ -31,6 +31,7 @@ run the following commands in the terminal:
 ## To migrate changes to the server
 
 You apply migrations when u've added any changes to the models, but just to be safe create a migration when u've added any major changes to the code so it's in sync with server
+
 To do this run the following commands in the terminal:
 > python manage.py makemigrations chatdata
 > python manage.py migrate
