@@ -23,7 +23,23 @@ There is a growing demand for accessible and user-friendly ways of accessing leg
 In the first two releases we aim to train the bot to answer general questions about the Irish law and legal system through pointing out a link using trigger words. 
 Potentially the bot will be able to act as a human lawyer, answering user questions with a generated reply that would clarify the topic for the user. 
 
+
 ## Download library
+
+# Current Progress
+
+This branch "scikit-practise-branch" is the deveolpemnet branch for the chatbot. Brendan and Cillian are trying out various methods for creating an AI that can perform all the requirements we want it to.
+
+Currently there are 2 main fetures in this branch
+    1. Brendans input processing algorithm in the "texyPreProcessing.py" file that can take an input and return only the relevent information that an AI would need from it.
+
+    2. Cillians cosin similarity utilisation in the "example.py" file that can match an input with a relevent output throught the use of scikit's AI functions.
+
+These 2 implimentations will be necisary to complete the AI chatbot and are being update frequently.
+
+We are talking with Propalon to help us develop the AI using more sophisticated techniques that should create i better result than are current methods.
+
+## To run the current version of chatbot
 
 run the following commands in the terminal:
 > pip install django-import-export
