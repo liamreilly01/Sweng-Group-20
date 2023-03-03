@@ -35,3 +35,40 @@ Currently there are 2 main fetures in this branch
 These 2 implimentations will be necisary to complete the AI chatbot and are being update frequently.
 
 We are talking with Propalon to help us develop the AI using more sophisticated techniques that should create i better result than are current methods.
+=======
+## To run the current version of chatbot
+
+run the following commands in the terminal: 
+> pip install nltk
+
+> pip install yake
+
+> Python3 -m nltk.downloader wordnet
+
+> Python3 bot.py
+
+## To run the current version of xml-getter
+
+go to the xml getter directory 
+
+> pip install lxml
+
+> Python3 main.py
+
+
+# JSON File Documentation
+each JSON object refers to a specific FAQ from the eISB website (https://www.irishstatutebook.ie/eli/faq.html)
+
+"keywords" and "keyphrases" attributes are taken from yake's interpretation.
+These attributes are not done manually, unless in exceptional cases.
+
+Manually added in hyperlinks to answers
+
+Line 160: manually added "help" keyword to "how can i get help with this site?"
+Line 160: inserted most probable keyword to "how can i get help with this site?" and "How do I search for a word containing a fada?" as yake yielded no key phrases with length > 1
+
+Line 46: "How will I know if a piece of legislation has been amended?" - should we manually add "changed" to keywords? more casual and less specific compared to "altered"
+
+## Definitions
+Synset - Set of words that are semantically equivalent (very similar to synonyms).
+Lemma - the basic form of a word, for example the lemma of "breaking" and "broke" is 'break'.
