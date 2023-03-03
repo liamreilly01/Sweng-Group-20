@@ -23,6 +23,9 @@ There is a growing demand for accessible and user-friendly ways of accessing leg
 In the first two releases we aim to train the bot to answer general questions about the Irish law and legal system through pointing out a link using trigger words. 
 Potentially the bot will be able to act as a human lawyer, answering user questions with a generated reply that would clarify the topic for the user. 
 
+
+## Download library
+
 # Current Progress
 
 This branch "scikit-practise-branch" is the deveolpemnet branch for the chatbot. Brendan and Cillian are trying out various methods for creating an AI that can perform all the requirements we want it to.
@@ -35,40 +38,30 @@ Currently there are 2 main fetures in this branch
 These 2 implimentations will be necisary to complete the AI chatbot and are being update frequently.
 
 We are talking with Propalon to help us develop the AI using more sophisticated techniques that should create i better result than are current methods.
-=======
+
 ## To run the current version of chatbot
 
-run the following commands in the terminal: 
-> pip install nltk
+run the following commands in the terminal:
+> pip install django-import-export
 
-> pip install yake
+## To migrate changes to the server
 
-> Python3 -m nltk.downloader wordnet
+You apply migrations when u've added any changes to the models, but just to be safe create a migration when u've added any major changes to the code so it's in sync with server
 
-> Python3 bot.py
+To do this run the following commands in the terminal:
+> python manage.py makemigrations chatdata
+> python manage.py migrate
 
-## To run the current version of xml-getter
+## To run the server
 
-go to the xml getter directory 
+run the following command in the terminal: 
+> python manage.py runserver
 
-> pip install lxml
+## To get into the admin page
 
-> Python3 main.py
+> Once you run the server you will be given a link like http://127.0.0.1:8000 in your terminal
+> Add /admin to the url like so: http://127.0.0.1:8000/admin which will then prompt you to log in 
+> Your username will just be your name and your password is the beginning part of your email in all caps 
 
 
-# JSON File Documentation
-each JSON object refers to a specific FAQ from the eISB website (https://www.irishstatutebook.ie/eli/faq.html)
 
-"keywords" and "keyphrases" attributes are taken from yake's interpretation.
-These attributes are not done manually, unless in exceptional cases.
-
-Manually added in hyperlinks to answers
-
-Line 160: manually added "help" keyword to "how can i get help with this site?"
-Line 160: inserted most probable keyword to "how can i get help with this site?" and "How do I search for a word containing a fada?" as yake yielded no key phrases with length > 1
-
-Line 46: "How will I know if a piece of legislation has been amended?" - should we manually add "changed" to keywords? more casual and less specific compared to "altered"
-
-## Definitions
-Synset - Set of words that are semantically equivalent (very similar to synonyms).
-Lemma - the basic form of a word, for example the lemma of "breaking" and "broke" is 'break'.
