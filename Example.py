@@ -22,7 +22,7 @@ nltk.download('punkt', quiet=True)
 acts = open('Acts.json', "r", encoding='utf-8-sig')
 actsDictionary = json.loads(acts.read())
 acts.close()
-corpus = str(actsDictionary)
+corpus = json.dumps(actsDictionary)
 #print(corpus)
 
 #print the articles text
@@ -30,6 +30,7 @@ corpus = str(actsDictionary)
 
 #tokenization
 text = corpus
+
 sentence_list = nltk.sent_tokenize(text)  #list of sentences
 
 # Function to return a random greeting response to a users greeting
@@ -71,13 +72,21 @@ def bot_response(user_input):
     index = index[1:]
     response_flag = 0
 
+    urlString = ""
     j = 0
     for i in range(len(index)):
         if similarity_scores_list[index[i]] > 0.0:
-            bot_response = bot_response+' '+sentence_list[index[i]]
+            bot_response = bot_response+' '+sentence_list[index[i]] + '\n'
             response_flag = 1
             j=j+1
-        if j>0:
+            key=3
+            #current = actsDictionary["2022"]
+            #actsDictionary = current["acts"]
+            for key in actsDictionary["2022"]["acts"]:
+                if sentence_list[index[i]] in key["details"] or sentence_list[index[i]] in key["description"]:
+                    if key["url"] not in urlString:
+                        urlString = urlString + "\nYou can find more on ({}) at: ({})".format(key["title"], key["url"]) + "\n"
+        if j>1:
             break
 
     if response_flag == 0:
@@ -85,13 +94,14 @@ def bot_response(user_input):
 
 
     sentence_list.remove(user_input)
-    return bot_response
+    return ("\n" + bot_response + urlString)
 
 #start chat
 print('Bot: Hi, how can I help?')
 
 
 while (True):
+    print("UserInput: ")
     user_input = input()
     if (user_input == ''):
         print('Bot: Bye!')
@@ -100,7 +110,7 @@ while (True):
         if greeting_response(user_input) != None:
             print('Bot: ' + greeting_response(user_input))
         else:
-            print('Bot: '+bot_response(user_input))
+            print('Bot: '+bot_response(user_input) + "\n")
 
 
 
