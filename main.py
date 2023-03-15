@@ -18,7 +18,7 @@ except:
 
 
 # initiliase Question-Answer Model
-qaModel = pipeline("question-answering", model='distilbert-base-cased-distilled-squad')
+qaModel = pipeline("question-answering", model="./model")
 
 # user-generated question
 question = input("Type your question here: ")

@@ -1,5 +1,8 @@
 # Sweng-Group-20
 
+# Transfer the following file into the model folder
+https://drive.google.com/file/d/1OhOlXXRepmDT9ewUT0ILAtQ5fk0MwQHm/view?usp=sharing
+
 Group members:
 
 3rd year students:
