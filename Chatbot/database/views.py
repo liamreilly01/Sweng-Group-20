@@ -4,6 +4,7 @@ from django.template import loader
 from django.http import JsonResponse #may not be necessary
 from rest_framework.response import Response #from tutorial 2
 from rest_framework.decorators import api_view #from tutorial 2
+from . serializers import * #from tutorial 2, created in serializers.py
 
 
 def database(request):
