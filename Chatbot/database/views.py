@@ -14,4 +14,13 @@ def database(request):
 
 @api_view(['GET'])
 def legislationList(request):
-  return Response("Legislation!!!")
+  legislationActs = Legislation.objects.all()
+  serializer = LegislationSerializer(legislationActs, many = True)
+  return Response(serializer.data)
+
+@api_view(['GET'])
+def legislationDetail(request, key):
+  legislation = Legislation.objects.get(id=key)
+  serializer = LegislationSerializer(legislation, many=False)
+  return Response(serializer.data)
+
