@@ -131,7 +131,10 @@
     {
     "Label": "Marine",
     "Question": "What does points mean in the context of the Sea-fisheries act?",
-    "Answer": "points means points assigned to a master of a sea-fishing boat for a serious infringement in accordance with Annex XXX to the Commission Regulation or section 15U, as the case may be",
+    "Answers": {
+        "Answer_Start": [100],
+        "Text" : ["points means points assigned to a master of a sea-fishing boat for a serious infringement in accordance with Annex XXX to the Commission Regulation or section 15U, as the case may be"]
+    },
     "Context": "official has the same meaning as it has in Article 4(6) of the Control Regulation;   points means points assigned to a master of a sea-fishing boat for a serious infringement in accordance with Annex XXX to the Commission Regulation or section 15U, as the case may be;   registered master means an Irish citizen who is entered in the Irish Fishing Master Register in accordance with section 15B;   Regulations of 2020 means the European Union (Common Fisheries Policy) (Point System) Regulations 2020 (S.I. No. 318 of 2020);   report means a report in writing and includes an inspection report, a surveillance report, a report of control data or material, collected by an official acting in the execution of his or her powers or duties"
   },
   {

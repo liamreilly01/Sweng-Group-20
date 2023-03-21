@@ -16,17 +16,15 @@ try:
 except:
     print("ERROR opening Sample_Acts.json")
 
-
 # initiliase Question-Answer Model
 qaModel = pipeline("question-answering", model="./model")
 
 # user-generated question
 question = input("Type your question here: ")
 
-maxScore = 0
-
-# iterate through each act's description
+# iterate through each act's details
 # !!! Very inefficient !!!
+maxScore = 0.0
 for act in sampleActsDictionary["2022"]["acts"]:
     context = act["details"] # text that model will read
     result = qaModel(question=question, context=context) # generate response
