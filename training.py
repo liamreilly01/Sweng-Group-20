@@ -14,21 +14,30 @@ print(len(dataset["train"][0]))
 
 tokenizer = AutoTokenizer.from_pretrained("distilbert-base-uncased")
 
-def makeListOfQuestions(list):
+def makeListFromLabel(list, label):
     newList = []
-    for i in range(len(list['train'][0])):
-        newList.append(list['train'][0][i]["Question"])
+    currentList = list['train'][0]
+    for i in range(len(currentList)):
+        newList.append(currentList[i][label])
+    return newList
+
+def makeAnswersList(list):
+    newList = []
+    currentList = list['train'][0]
+    for i in range(len(currentList)):
+        newList.append(currentList[i]["Answers"])
     return newList
 
 def preprocess_function(examples):
-    questions = makeListOfQuestions(examples)
+    questions = makeListFromLabel(examples, 'Question')
+    context = makeListFromLabel(examples, 'Context')
     # print(examples['train'][0])
     # questions = [q.strip() for q in examples["train"][0][i]["Question"]]
     print(questions)
 
     inputs = tokenizer(
         questions,
-        examples["Context"],
+        context,
         max_length=384,
         truncation="only_second",
         return_offsets_mapping=True,
@@ -36,7 +45,7 @@ def preprocess_function(examples):
     )
     
     offset_mapping = inputs.pop("offset_mapping")
-    answers = examples["Answers"]
+    answers = makeAnswersList(examples)
     start_positions = []
     end_positions = []
     
