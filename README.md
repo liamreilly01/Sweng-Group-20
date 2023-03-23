@@ -1,7 +1,7 @@
 # Sweng-Group-20
 
 # Transfer the following file into the model folder
-https://drive.google.com/file/d/1OhOlXXRepmDT9ewUT0ILAtQ5fk0MwQHm/view?usp=sharing
+https://drive.google.com/file/d/1NR5wYN1hkLvl16T0mhRajdtV6hJiYE-n/view?usp=sharing
 
 Group members:
 

@@ -69,7 +69,7 @@ def preprocess_function(examples):
 tokenized_dataset = dataset.map(preprocess_function, batched=True)
 data_collator = DefaultDataCollator()
 
-model = AutoModelForQuestionAnswering.from_pretrained("distilbert-base-cased-distilled-squad") # distilbert-base-uncased
+model = AutoModelForQuestionAnswering.from_pretrained("./model") #distilbert-base-cased-distilled-squad
 
 training_args = TrainingArguments(
     output_dir="qa_model",
