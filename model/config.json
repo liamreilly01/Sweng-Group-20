@@ -1,5 +1,5 @@
 {
-  "_name_or_path": "distilbert-base-cased-distilled-squad",
+  "_name_or_path": "./model",
   "activation": "gelu",
   "architectures": [
     "DistilBertForQuestionAnswering"

@@ -9,10 +9,9 @@ from transformers import AutoModelForQuestionAnswering, TrainingArguments, Train
 
 dataset = load_dataset('json', data_files='train-test.json', split="train")
 
-print(dataset)
 dataset = dataset.train_test_split(test_size=0.2)
 
-tokenizer = AutoTokenizer.from_pretrained("distilbert-base-cased-distilled-squad") #distilbert-base-cased-distilled-squad
+tokenizer = AutoTokenizer.from_pretrained("./model") #distilbert-base-cased-distilled-squad
 
 def preprocess_function(examples):
     questions = [q.strip() for q in examples["Question"]]
@@ -69,7 +68,7 @@ def preprocess_function(examples):
 tokenized_dataset = dataset.map(preprocess_function, batched=True)
 data_collator = DefaultDataCollator()
 
-model = AutoModelForQuestionAnswering.from_pretrained("./model") #distilbert-base-cased-distilled-squad
+model = AutoModelForQuestionAnswering.from_pretrained("./model") # distilbert-base-uncased
 
 training_args = TrainingArguments(
     output_dir="qa_model",

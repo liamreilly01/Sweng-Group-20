@@ -3,7 +3,7 @@
   "do_lower_case": false,
   "mask_token": "[MASK]",
   "model_max_length": 512,
-  "name_or_path": "distilbert-base-cased-distilled-squad",
+  "name_or_path": "./model",
   "pad_token": "[PAD]",
   "sep_token": "[SEP]",
   "special_tokens_map_file": null,
