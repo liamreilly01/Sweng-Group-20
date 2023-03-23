@@ -1,17 +1,18 @@
-{
-  "train": [
-    {
-      "Label": "Marine",
-      "Question": "How do I apply for registration for the Irish Fishing Master Register?",
-      "Answers": {
-        "Answer_Start": [80],
-        "Text" : ["(a) furnish the Minister with such information as the Minister may reasonably require for the purposes of maintaining the Irish Fishing Master Register, and (b) without prejudice to the generality of paragraph (a), satisfy the Minister that he or she  (i) is an Irish citizen, and (ii) is not, at the time of registration, assigned 90 or more points in accordance with this Chapter."]
-    },
-      "Context": "A person applying for registration in the Irish Fishing Master Register shall  (a) furnish the Minister with such information as the Minister may reasonably require for the purposes of maintaining the Irish Fishing Master Register, and (b) without prejudice to the generality of paragraph (a), satisfy the Minister that he or she  (i) is an Irish citizen, and (ii) is not, at the time of registration, assigned 90 or more points in accordance with this Chapter. (3) An application for entry in the Irish Fishing Master Register shall be made in such form and manner as the Minister may specify."
-    },
+[
+      {
+          "Label": "Marine",
+          "Question": "How do I apply for registration for the Irish Fishing Master Register?",
+          "ID": "0",
+          "Answers": {
+            "Answer_Start": [80],
+            "Text" : ["(a) furnish the Minister with such information as the Minister may reasonably require for the purposes of maintaining the Irish Fishing Master Register, and (b) without prejudice to the generality of paragraph (a), satisfy the Minister that he or she  (i) is an Irish citizen, and (ii) is not, at the time of registration, assigned 90 or more points in accordance with this Chapter."]
+          },
+          "Context": "A person applying for registration in the Irish Fishing Master Register shall  (a) furnish the Minister with such information as the Minister may reasonably require for the purposes of maintaining the Irish Fishing Master Register, and (b) without prejudice to the generality of paragraph (a), satisfy the Minister that he or she  (i) is an Irish citizen, and (ii) is not, at the time of registration, assigned 90 or more points in accordance with this Chapter. (3) An application for entry in the Irish Fishing Master Register shall be made in such form and manner as the Minister may specify."
+      },
     {
       "Label": "Marine",
       "Question": "What details does the Irish Fishing Master Register contain?",
+      "ID": "1",
       "Answers": {
         "Answer_Start": [134],
         "Text" : ["The Irish Fishing Master Register shall contain the following details in respect of each person registered therein: (a) his or her name and address; (b) his or her phone number, email address and any other relevant contact details; (c) his or her personal public service number (within the meaning of section 262 of the Social Welfare Consolidation Act 2005); (d) his or her registration number as specified in the certificate of master registration issued in respect of him or her; (e) the date of registration on the certificate of master registration; (f) the number of points (if any) assigned to him or her by the Authority in accordance with this Chapter; (g) the date on which any such points were so assigned; (h) details of any suspension of the registration of the person in the Irish Fishing Master Register, including the date and duration of any such suspension, a summary of the reasons for the suspension and particulars of all deletions of such suspensions; (i) the date of occurrence and details of each serious infringement for which he or she has been assigned points (if any); (j) the date of the detection of each such serious infringement; (k) the date on which any points assigned to the master or any suspension of the registration of the master may be deleted from the Irish Fishing Master Register in accordance with section 15J(2) or 15K(6); (l) such other information as the Minister considers necessary to ensure the effective management of the Irish Fishing Master Register."]
@@ -21,6 +22,7 @@
     {
       "Label": "Marine",
       "Question": "Under what grounds can an application to Irish Fishing Master Register be rejected?",
+      "ID": "2",
       "Answers": {
         "Answer_Start": [1],
         "Text" : ["Subject to subsection (10), the Minister may refuse to register a person in, or remove a person from, the Irish Fishing Master Register where the Minister is satisfied that the persons application for registration is or was, at the time it was made, incomplete, inaccurate, false or misleading in any material respect."]
@@ -30,6 +32,7 @@
     {
       "Label": "Marine",
       "Question": "What happens when I am removed from the Irish Fishing Master Register?",
+      "ID": "3",
       "Answers": {
         "Answer_Start": [1314],
         "Text" : ["Where a person is convicted of an offence under subsection (12), he or she shall be removed by the Minister from the Irish Fishing Master Register."]
@@ -39,6 +42,7 @@
     {
       "Label": "Marine",
       "Question": "What happens if I don't have my certificate with me when I am sailing a boat?",
+      "ID": "4",
       "Answers": {
         "Answer_Start": [504],
         "Text" : ["A person who fails to comply with subsection (2) commits an offence and is liable on summary conviction to a class A fine."]
@@ -48,6 +52,7 @@
     {
       "Label": "Marine",
       "Question": "Do I have to have my certificate with me when I am sailing a boat?",
+      "ID": "5",
       "Answers": {
         "Answer_Start": [326],
         "Text" : ["A master shall, at all times when he or she is acting as the master of a sea-fishing boat, carry his or her certificate of master registration on board the sea-fishing boat."]
@@ -57,6 +62,7 @@
     {
       "Label": "Marine",
       "Question": "For how long is the data stored in the Irish Fishing Master Register?",
+      "ID": "6",
       "Answers": {
         "Answer_Start": [489],
         "Text" : ["a minimum of 3 years, starting from the year following the later of  (a) the year in which the data is entered in the Irish Fishing Master Register, or (b) the year in which the most recent points are assigned to the person to whom it relates."]
@@ -66,6 +72,7 @@
     {
       "Label": "Employment",
       "Question": "What act does the the Redundancy Payments Act 2022 amend?",
+      "ID": "7",
       "Answers": {
         "Answer_Start": [21],
         "Text" : ["Redundancy Payments Act 1967"]
@@ -75,6 +82,7 @@
     {
       "Label": "Employment",
       "Question": "Why do I need to provide documents to be paid?",
+      "ID": "8",
       "Answers": {
         "Answer_Start": [376],
         "Text" : ["determining whether the employee is entitled to a payment"]
@@ -84,6 +92,7 @@
     {
       "Label": "Employment",
       "Question": "Where do the funds for the payment come from?",
+      "ID": "9",
       "Answers": {
         "Answer_Start": [376],
         "Text" : ["the Social Insurance Fund"]
@@ -93,6 +102,7 @@
     {
       "Label": "Employment",
       "Question": "Who do I pay if I have mistakenly received a payment under this act?",
+      "ID": "10",
       "Answers": {
         "Answer_Start": [280],
         "Text" : ["the Social Insurance Fund"]
@@ -102,6 +112,7 @@
     {
       "Label": "Employment",
       "Question": "How much money am I entitled to?",
+      "ID": "11",
       "Answers": {
         "Answer_Start": [79],
         "Text" : ["the amount of the lump sum payable under section 19 or 32, and (b) the amount of the lump sum determined under subparagraph 1 of Schedule 3"]
@@ -111,6 +122,7 @@
     {
       "Label": "Employment",
       "Question": "Under what circumstances am I entitled to payments?",
+      "ID": "12",
       "Answers": {
         "Answer_Start": [266],
         "Text" : ["laid off during the period beginning on 13 March 2020 and ending on 31 January 2022 due to the effect of measures required to be taken by his or her employer in order to comply with, or as a consequence of, Government policy to prevent, limit, minimise or slow the spread of infection of Covid-19."]
@@ -120,6 +132,7 @@
     {
       "Label": "Electricity",
       "Question": "What is the Electricity Emergency Cost Benefit Scheme?",
+      "ID": "13",
       "Answers": {
         "Answer_Start": [316],
         "Text" : ["The Scheme is established for the purpose of making, on a once-off basis, an electricity costs emergency benefit payment in the year ending 31 December 2022"]
@@ -129,6 +142,7 @@
     {
       "Label": "Electricity",
       "Question": "When did the Cost Emergency Benefit Scheme Begin?",
+      "ID": "14",
       "Answers": {
         "Answer_Start": [316],
         "Text" : ["The Scheme is established for the purpose of making, on a once-off basis, an electricity costs emergency benefit payment in the year ending 31 December 2022"]
@@ -138,6 +152,7 @@
     {
       "Label": "Electricity",
       "Question": "Who will be carrying out the Cost Emergency Benefit Scheme?",
+      "ID": "15",
       "Answers": {
         "Answer_Start": [844],
         "Text" : ["The Scheme shall be operated and administered by the distribution system operator and electricity suppliers in accordance with this Act and any regulations made thereunder"]
@@ -147,6 +162,7 @@
     {
       "Label": "Electricity",
       "Question": "Who is the distribution system operator?",
+      "ID": "16",
       "Answers": {
         "Answer_Start": [1326],
         "Text" : ["the distribution system operator shall 4.  (a) on the request of the Minister, determine the number of domestic electricity accounts on such date (in this Act referred to as the relevant date) as the Minister may, with the consent of the Minister for Public Expenditure and Reform, prescribe for the purposes of this paragraph,   (b) as soon as practicable after it has made its determination under paragraph (a), notify the Minister of that determination, paragraph (a) (c) provide the Minister with any additional information requested by the Minister under section 2(3)(d) or 3(2), section 2(3)(d) 3(2) (d) receive monies transferred to it by the Minister under section 3 for the purpose of the distribution system operator transferring those monies to electricity suppliers in accordance with paragraph (f), section 3 paragraph (f) (e) subject to subsection (3), on such dat"]
@@ -156,6 +172,7 @@
     {
       "Label": "Electricity",
       "Question": "What does the distribution system operator do?",
+      "ID": "17",
       "Answers": {
         "Answer_Start": [871],
         "Text" : ["the distribution system operator shall 4.  (a) on the request of the Minister, determine the number of domestic electricity accounts on such date (in this Act referred to as the relevant date) as the Minister may, with the consent of the Minister for Public Expenditure and Reform, prescribe for the purposes of this paragraph,   (b) as soon as practicable after it has made its determination under paragraph (a), notify the Minister of that determination, paragraph (a) (c) provide the Minister with any additional information requested by the Minister under section 2(3)(d) or 3(2), section 2(3)(d) 3(2) (d) receive monies transferred to it by the Minister under section 3 for the purpose of the distribution system operator transferring those monies to electricity suppliers in accordance with paragraph (f), section 3 paragraph (f) (e) subject to subsection (3), on such dat"]
@@ -165,6 +182,7 @@
     {
       "Label": "Electricity",
       "Question": "Who determine the number of domestic electricity accounts on such date?",
+      "ID": "18",
       "Answers": {
         "Answer_Start": [85],
         "Text" : ["distribution system operator"]
@@ -174,6 +192,7 @@
     {
       "Label": "Electricity",
       "Question": "What is an electricity supplier expected to do?",
+      "ID": "19",
       "Answers": {
         "Answer_Start": [806],
         "Text" : ["For the purposes of the operation and administration of the Scheme, an electricity supplier shall 5.  (a) receive monies transferred to it by the distribution system operator under section 4(1)(f), section 4(1)(f) (b) use monies received by it under paragraph (a) for the sole purpose of making electricity costs emergency benefit payments, paragraph (a) (c) keep records of  (i) all monies received in accordance with paragraph (a), and paragraph (a) (ii) all electricity costs emergency benefit payments made by it, (d) as soon as practicable, repay to the distribution system operator any monies received by it in accordance with paragraph (a) that have not been used for the purpose of making electricity costs emergency benefit payments and keep records of any such repayments, paragraph (a) (e) perform such other functions as the Minster may, with the consent of the Minister for Public Expenditure and Reform, for the purposes of the efficient operation and administration of the Scheme, prescribe, and (f) make available to an auditor appointed by the Minister all books and records in relation to the performance by the electricity supplier of the functions conferred on it by or under this Act."]
@@ -183,18 +202,17 @@
     {
       "Label": "Electricity",
       "Question": "Who pays for the administration of the Electricity Costs Act?",
+      "ID": "20",
       "Answers": {
         "Answer_Start": [710],
         "Text" : ["The expenses incurred by the Minister in the administration of this Act shall, to such extent as may be sanctioned by the Minister for Public Expenditure and Reform, be paid out of monies provided by the Oireachtas"]
     },
       "Context": "Regulations under this section may contain such incidental or supplementary provisions that appear to the Minister, with the consent of the Minister for Public Expenditure and Reform, to be expedient for the purposes of the regulations. (5) Every regulation made by the Minister under this section shall be laid before each House of the Oireachtas as soon as may be after it is made and, if a resolution annulling the regulation is passed by either such House within the next 21 days on which that House sits after the regulation is laid before it, the regulation shall be annulled accordingly but without prejudice to the validity of anything previously done thereunder. 9. Expenses Expenses Expenses 9. (1) The expenses incurred by the Minister in the administration of this Act shall, to such extent as may be sanctioned by the Minister for Public Expenditure and Reform, be paid out of monies provided by the Oireachtas. 9. (2) Expenses incurred by the distribution system operator and electricity suppliers in relation to the operation and administration of the Scheme shall be borne by the distribution system operator and electricity suppliers, as the case may be. 10. Short title and commencement Short title and commencement Short title and commencement 10. (1) This Act may be cited as the Electricity Costs (Domestic Electricity Accounts) Emergency Measures Act 2022. 10. (2) This Act shall come into operation on such day or days as the Minister may appoint by order or orders either generally or with reference to any particular purpose or provision and different days may be so appointed for different purposes or provisions."
-    }
-  ],
-
-  "test" : [
+    },
     {
     "Label": "Marine",
     "Question": "What does points mean in the context of the Sea-fisheries act?",
+    "ID": "21",
     "Answers": {
         "Answer_Start": [86],
         "Text" : ["points means points assigned to a master of a sea-fishing boat for a serious infringement in accordance with Annex XXX to the Commission Regulation or section 15U, as the case may be"]
@@ -204,6 +222,7 @@
   {
     "Label": "Employment",
     "Question": "What does the latest amendment to the Redundancy Payments Act allow for?",
+    "ID": "22",
     "Answers": {
       "Answer_Start": [53],
       "Text" : ["provide for payments to employees in respect of certain lay-off periods during the period beginning on 13 March 2020 and ending on 31 January 2022"]
@@ -211,13 +230,13 @@
     "Context": "An Act to amend the Redundancy Payments Act 1967 to provide for payments to employees in respect of certain lay-off periods during the period beginning on 13 March 2020 and ending on 31 January 2022; to amend the Companies (Corporate Enforcement Authority) Act 2021; and to provide for related matters."
   },
   {
-    "Label": "Electricity",
-    "Question": "What is the Electricity Costs Act?",
-    "Answers": {
-      "Answer_Start": [1],
-      "Text" : ["An Act to make provision, due to the exceptional rise in global energy prices, for the establishment of a scheme to be known as the Electricity Costs Emergency Benefit Scheme for the purpose of making, on a once-off basis, an electricity costs emergency benefit payment in the year ending 31 December 2022"]
+  "Label": "Electricity",
+  "Question": "What is the Electricity Costs Act?",
+  "ID": "23",
+  "Answers": {
+  "Answer_Start": [1],
+  "Text": ["An Act to make provision, due to the exceptional rise in global energy prices, for the establishment of a scheme to be known as the Electricity Costs Emergency Benefit Scheme for the purpose of making, on a once-off basis, an electricity costs emergency benefit payment in the year ending 31 December 2022"]
   },
-    "Context": "An Act to make provision, due to the exceptional rise in global energy prices, for the establishment of a scheme to be known as the Electricity Costs Emergency Benefit Scheme for the purpose of making, on a once-off basis, an electricity costs emergency benefit payment in the year ending 31 December 2022 in respect of domestic electricity accounts in accordance with this Act out of resources available to the Minister for the Environment, Climate and Communications; for that purpose to confer functions on the distribution system operator and electricity suppliers; to confer functions on the Commission for Regulation of Utilities in relation to the Scheme and for that purpose to amend the Electricity Regulation Act 1999; to provide that electricity costs emergency benefit payments are exempt from income tax and for that purpose to amend the Taxes Consolidation Act 1997; to enable the Minister for the Environment, Climate and Communications to make regulations in relation to the operation of the Scheme; and to provide for related matters."
+  "Context": "An Act to make provision, due to the exceptional rise in global energy prices, for the establishment of a scheme to be known as the Electricity Costs Emergency Benefit Scheme for the purpose of making, on a once-off basis, an electricity costs emergency benefit payment in the year ending 31 December 2022 in respect of domestic electricity accounts in accordance with this Act out of resources available to the Minister for the Environment, Climate and Communications; for that purpose to confer functions on the distribution system operator and electricity suppliers; to confer functions on the Commission for Regulation of Utilities in relation to the Scheme and for that purpose to amend the Electricity Regulation Act 1999; to provide that electricity costs emergency benefit payments are exempt from income tax and for that purpose to amend the Taxes Consolidation Act 1997; to enable the Minister for the Environment, Climate and Communications to make regulations in relation to the operation of the Scheme; and to provide for related matters."
   }
-  ]
-}
+]

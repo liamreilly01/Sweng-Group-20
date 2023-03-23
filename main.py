@@ -20,16 +20,15 @@ except:
 qaModel = pipeline("question-answering", model="./model")
 
 # user-generated question
-question = input("Type your question here: ")
-
+question = input("Enter your question here: ")
 # iterate through each act's details
 # !!! Very inefficient !!!
 maxScore = 0.0
 for act in sampleActsDictionary["2022"]["acts"]:
-    context = act["details"] # text that model will read
+    context = act["description"] # text that model will read
     result = qaModel(question=question, context=context) # generate response
     if result["score"] > maxScore:
         maxScore = result["score"]
         answer = result["answer"]
 
-print("The answer is: \'", answer, "\', with a score of ", round(maxScore, 4))
+print("The answer is: \'", answer, "\', with a score of ", round(maxScore,4))
