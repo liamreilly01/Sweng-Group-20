@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from main import getChatbotOutput
 
 # Create your views here.
 
@@ -12,8 +13,8 @@ def specific(request):
 
 def botResponse(request):
     myMessage = request.GET.get('myMessage')
-    
-    return HttpResponse(myMessage)
+    myResponse = getChatbotOutput(myMessage)
+    return HttpResponse(myResponse)
 
 
 
