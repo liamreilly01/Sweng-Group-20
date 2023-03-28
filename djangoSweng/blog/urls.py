@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     path('',views.index,name='index'),
-    path('specific',views.specific,name='specific')
+    path('specific',views.specific,name='specific'),
+
+    path('botResponse',views.botResponse,name='botResponse')
     
 ]
