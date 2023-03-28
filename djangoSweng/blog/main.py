@@ -1,10 +1,11 @@
 # USAGE:
 # pip install transformers
+from blog import model
 
 
-import json
 
 def getChatbotOutput(question):
+    import json
     from transformers import pipeline
     try:
         sampleActs = open('Sample_Acts.json', "r", encoding="utf-8")
