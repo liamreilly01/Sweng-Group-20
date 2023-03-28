@@ -1,16 +1,18 @@
 # USAGE:
 # pip install transformers
-from blog import model
 
 
 
 def getChatbotOutput(question):
     import json
     from transformers import pipeline
+    from pathlib import Path
     try:
         sampleActs = open('Sample_Acts.json', "r", encoding="utf-8")
+        print("opended");
         try:
             sampleActsDictionary = json.loads(sampleActs.read())
+            print("loaded");
         except:
             print("ERROR loading and reading Sample_Acts.json")
         finally:
@@ -19,7 +21,7 @@ def getChatbotOutput(question):
         print("ERROR opening Sample_Acts.json")
 
     # initialise the Question-Answer Pipeline
-    pipeline = pipeline("question-answering", model="./model")
+    pipeline = pipeline("question-answering", model=".model")
 
     # user-generated question
 
