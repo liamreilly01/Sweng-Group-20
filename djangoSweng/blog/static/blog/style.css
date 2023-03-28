@@ -5,7 +5,7 @@
     width: 60%;
     margin-top: 50px;
     border-radius: 10px;
-    border: 1px solid gray;
+    border: 2px solid #223462;
     padding: 10px;
 }
 
@@ -28,12 +28,12 @@
 
 #textInput{
     border: 3px solid white;
-    border-bottom: 3px solid #8c8b8b;
+    border-bottom: 3px solid #223462;
     font-family: monospace;
     font-size: 14px;
     width: 60%;
     padding: 16px;
-    color: rgb(8, 7, 7);
+    color: #223462;
 }
 
 #buttonInput{
@@ -41,7 +41,7 @@
     font-family: monospace;
     font-size: 14px;
     border: 3px solid #5b605c;
-    background-color: rgb(40, 48, 40);
+    background-color: #223462;
     color: white;
     border-radius: 10px;
 
@@ -49,12 +49,13 @@
 
 
 
-.propylonimage img {
-
+.propylonimage {
+    height: 10%;
+ 
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 10%;
  
  
 }
@@ -64,5 +65,5 @@
     font-family: monospace;
     font-size: 14px;
     line-height: 25px;
-    color: rgb(109, 111, 109);
+    color: #223462;
 }
