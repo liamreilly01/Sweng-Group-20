@@ -1,5 +1,8 @@
 Creating a frontend using django.
 
+# Transfer the following file into the model folder
+https://drive.google.com/file/d/1NR5wYN1hkLvl16T0mhRajdtV6hJiYE-n/view?usp=share_link
+
 Group members:
 
 3rd year students:
@@ -27,6 +30,10 @@ Potentially the bot will be able to act as a human lawyer, answering user questi
 ## Download library
 
 # Current Progress
+
+Chatbot model is pretrained on distilbert, fine-tuned on squad and our own custom sample QA
+dataset. We can successfully train the model. The goal is to implement cosine Similarity
+to make the algorithm more efficient.
 
 This branch "scikit-practise-branch" is the deveolpemnet branch for the chatbot. Brendan and Cillian are trying out various methods for creating an AI that can perform all the requirements we want it to.
 
