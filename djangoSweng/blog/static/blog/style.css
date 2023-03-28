@@ -47,11 +47,18 @@
 
 }
 
-h1{
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
-    color: rgb(57, 72, 57);
 
+
+.propylon img {
+
+
+    height: 200px;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+ 
+ 
 }
 
 .userText{
