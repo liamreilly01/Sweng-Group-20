@@ -3,6 +3,3 @@ model/pytorch_model.bin
 
 # weird mac generated files
 **/.DS_Store
-
-# training model for frontend
-code/model/pytorch_model.bin
