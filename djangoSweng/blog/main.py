@@ -21,7 +21,7 @@ def getChatbotOutput(question):
         print("ERROR opening Sample_Acts.json")
 
     # initialise the Question-Answer Pipeline
-    pipeline = pipeline("question-answering", model=".model")
+    pipeline = pipeline("question-answering", model="model")
 
     # user-generated question
 

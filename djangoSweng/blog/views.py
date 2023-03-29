@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from main import getChatbotOutput
+from blog.main import getChatbotOutput
 
 def index(request):
     return render(request, 'blog/index.html')
