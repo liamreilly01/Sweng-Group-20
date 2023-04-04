@@ -10,7 +10,7 @@ def getChatbotOutput(question):
     from transformers import pipeline
     from pathlib import Path
     try:
-        sampleActs = open('Sample_Acts.json', "r", encoding="utf-8")
+        sampleActs = open('../acts.json', "r", encoding="utf-8")
         print("opended");
         try:
             sampleActsDictionary = json.loads(sampleActs.read())
