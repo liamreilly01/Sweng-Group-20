@@ -1,97 +1,67 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css">
-  </head>
-  <style>
-    .chatbot-container {
-    width: 400px;
-    height: 500px;
-    background-color: #fff;
-    border-radius: 10px;
-    margin: 50px auto;
-    padding: 20px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    font-family: 'Roboto', sans-serif;
-    color: #333;
-  }
-  
-  .chatbot-name {
-    text-align: center;
-    font-size: 30px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #007bff;
-  }
-  
-  .chatbot-messages {
-    height: 300px;
-    overflow-y: scroll;
-    margin-bottom: 20px;
-  }
-  
-  .message {
-    display: inline-block;
-    max-width: 80%;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    font-size: 16px;
-  }
-  
-  .received {
-    background-color: #e6e6e6;
-  }
-  
-  .sent {
-    background-color: #007bff;
-    color: #fff;
-    text-align: right;
-  }
-  
-  .chatbot-input {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-  }
-  
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #007bff;
-    border-radius: 5px 0 0 5px;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  </style>
+    <meta chartset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    {%  load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+</head>
 <body>
-    <div class="chatbot-container">
-      <h1 class="chatbot-name">My Chatbot</h1>
-      <div class="chatbot-messages">
-        <div class="message received">
-          <p>Hello! How can I help you today?</p>
-        </div>
-        <div class="message sent">
-          <p>Hi, I need some help with my order.</p>
-        </div>
-      </div>
-      <div class="chatbot-input">
-        <input type="text" placeholder="Type your message...">
-        <button>Send</button>
-      </div>
+    <div class = "heading">
+        <div class = "image"><img src = "https://image4.owler.com/logo/propylon_owler_20160228_142152_original.png" height = "50px" width = "70px"></div>
+
+    <div class = "title"><h1>ML Chatbot for <a href= "https://www.irishstatutebook.ie/" target = "_blank" >www.irishstatuebook.ie</a></h1></div>
     </div>
-  </body>
-  </html>
+    <div>
+        <div id="chatbot">
+            <p class="botText"><span> Hi </span></p>
+        </div>
+
+        <div id="userInput">
+            <input type="text" id="textInput" name="userMessage" placeholder="What do you want to know about?"/>
+            <input type="submit" value="Enter" id="buttonInput"/>
+
+        </div>
+    </div>
+
+    <script>
+
+        function getUserResponse(){
+
+            var userText = $('#textInput').val();
+            var userHTML = "<p class='userText'>You: <span>"+userText+"</span/></p>";
+            $('#textInput').val("");
+
+            $('#chatbot').append(userHTML);
+
+            $.get('/database/botResponse',{myMessage:userText}).done(function(data){
+                
+                var returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
+                    $('#chatbot').append(returnedMessage);
+            })
+        }
+
+        
+    
+        $('#buttonInput').click(function(){
+            getUserResponse();
+        })
+
+        $(document).on("keypress", function(e){
+        if(e.which == 13){
+            getUserResponse();
+        }
+    });
+
+
+
+    </script>
+
+</body>
+</html>

@@ -5,6 +5,9 @@ from django.http import JsonResponse #may not be necessary
 from rest_framework.response import Response #from tutorial 2
 from rest_framework.decorators import api_view #from tutorial 2
 from . serializers import * #from tutorial 2, created in serializers.py
+from django.shortcuts import render
+from database.main import getChatbotOutput
+
 
 
 def database(request):
@@ -24,3 +27,10 @@ def legislationDetail(request, key):
   serializer = LegislationSerializer(legislation, many=False)
   return Response(serializer.data)
 
+def botResponse(request):
+    myMessage = request.GET.get('myMessage')
+    myResponse = getChatbotOutput(myMessage)
+    return HttpResponse(myResponse)
+
+def index(request):
+    return render(request, 'blog/index.html')
