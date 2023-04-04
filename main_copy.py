@@ -41,16 +41,15 @@ def getMostLikelyAct(question):
 def getChatbotOutput(question):
     from transformers import pipeline
 
-    finalAnswer = ""
-
     # initialise the Question-Answer Pipeline
     pipeline = pipeline("question-answering", model="./model")
 
 
-    act = getMostLikelyAct(question)
+    # act = getMostLikelyAct(question)
+    act = sampleActsDictionary["2022"]["acts"][1]
 
     context = act["details"]
-    result = pipeline(question=question, context=act["details"])  # generate response
+    result = pipeline(question=question, context=context)  # generate response
     answer = result["answer"]
     score = result["score"]
 
@@ -69,5 +68,5 @@ try:
 except:
     print("ERROR opening Sample_Acts.json")
 
-question = input("What would you like to know? ")
+question = "How do I register for the Irish Fishing Master Register?"
 print(getChatbotOutput(question))

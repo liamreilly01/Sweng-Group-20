@@ -11,14 +11,14 @@ dataset = load_dataset('json', data_files='train-test.json', split="train")
 
 dataset = dataset.train_test_split(test_size=0.1)
 
-tokenizer = AutoTokenizer.from_pretrained("bert-large-uncased-whole-word-masking-finetuned-squad") #distilbert-base-cased-distilled-squad
+tokenizer = AutoTokenizer.from_pretrained("lisa/legal-bert-squad-law") #distilbert-base-cased-distilled-squad
 
 def preprocess_function(examples):
-    questions = [q.strip() for q in examples["question"]]
+    questions = [q.strip() for q in examples["Question"]]
 
     inputs = tokenizer(
         questions,
-        examples["context"],
+        examples["Context"],
         max_length=384,
         truncation="only_second",
         return_offsets_mapping=True,
@@ -26,14 +26,14 @@ def preprocess_function(examples):
     )
 
     offset_mapping = inputs.pop("offset_mapping")
-    answers = examples["answers"]
+    answers = examples["Answers"]
     start_positions = []
     end_positions = []
 
     for i, offset in enumerate(offset_mapping):
         answer = answers[i]
-        start_char = answer["answer_start"][0]
-        end_char = answer["answer_start"][0] + len(answer["text"][0])
+        start_char = answer["Answer_Start"][0]
+        end_char = answer["Answer_Start"][0] + len(answer["Text"][0])
         sequence_ids = inputs.sequence_ids(i)
 
         # Find the start and end of the context
@@ -68,17 +68,17 @@ def preprocess_function(examples):
 tokenized_dataset = dataset.map(preprocess_function, batched=True)
 data_collator = DefaultDataCollator()
 
-model = AutoModelForQuestionAnswering.from_pretrained("bert-large-uncased-whole-word-masking-finetuned-squad") # distilbert-base-uncased
+model = AutoModelForQuestionAnswering.from_pretrained("lisa/legal-bert-squad-law") # distilbert-base-uncased
 
 training_args = TrainingArguments(
-    output_dir="model_logs",
+    output_dir="qa_model",
     evaluation_strategy="epoch",
-    learning_rate=3e-5, # was 2e-5
-    per_device_train_batch_size=3, #was 16
-    per_device_eval_batch_size=3,  #was 16
-    num_train_epochs=2, # was 3
+    learning_rate=2e-5,
+    per_device_train_batch_size=16,
+    per_device_eval_batch_size=16,
+    num_train_epochs=3,
     weight_decay=0.01,
-    push_to_hub=False
+    push_to_hub=False,
 )
 
 trainer = Trainer(
@@ -92,7 +92,7 @@ trainer = Trainer(
 
 trainer.train()
 
-trainer.save_model('./testModel')
+trainer.save_model('./lisaModel/')
 
 #
 # firstLoad()
