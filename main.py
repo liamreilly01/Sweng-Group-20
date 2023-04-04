@@ -4,7 +4,7 @@
 
 import json
 import requests
-
+import time
 
 def apiQuery(payload):
     api_token = "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"
@@ -18,7 +18,7 @@ def getMostLikelyAct(question):
 
     data = {
         "inputs": {
-            "source_sentence": "",
+            "source_sentence": question,
             "sentences": []
         }
     }
@@ -32,6 +32,7 @@ def getMostLikelyAct(question):
     maxScore = 0.0
     largestIndex = 0
     for i in range(0, length):
+        # some weird bug here fix later pls keyError 0
         if (response[i] > maxScore):
             largestIndex = i
             maxScore = response[i]
@@ -39,23 +40,25 @@ def getMostLikelyAct(question):
     return sampleActsDictionary["2022"]["acts"][largestIndex]
 
 def getChatbotOutput(question):
+    print("[Importing necessary libraries]")
     from transformers import pipeline
 
-    finalAnswer = ""
-
     # initialise the Question-Answer Pipeline
-    pipeline = pipeline("question-answering", model="./model")
+    print("[Loading in the pretrained model]")
+    pipeline = pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
 
-
+    print("[Finding most likely act to contain your question]")
     act = getMostLikelyAct(question)
+    print("[Searching this act for the best answer]")
+    print("Disclaimer: This bot is not legally reliable. Do not use this in a court of law.")
 
     context = act["details"]
     result = pipeline(question=question, context=act["details"])  # generate response
     answer = result["answer"]
     score = result["score"]
 
-    finalAnswer = answer , "\nwith a score of " , round(score,4) , ".\nWe think your answer is in:" , act["title"] , \
-        "\nThe URL for this act: " , act["url"]
+    finalAnswer = "Answer: \"" + answer + "\"\nScore: " + str(round(score,4)) + ".\nAct Title: " + act["title"] + "\nAct URL: " + act["url"]
+
     return finalAnswer
 
 try:
@@ -69,5 +72,8 @@ try:
 except:
     print("ERROR opening Sample_Acts.json")
 
-question = input("What would you like to know? ")
+question = input("\nWhat would you like to know? ")
+startTime = time.time()
 print(getChatbotOutput(question))
+endTime = time.time()
+print("\nRuntime:" , round((endTime - startTime), 2) , "seconds")
