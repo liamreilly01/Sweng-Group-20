@@ -31,7 +31,7 @@ def getChatbotOutput(question):
     # !!! Very inefficient !!!
 
     for act in sampleActsDictionary["2022"]["acts"]:
-        context = act["description"] # text that model will read
+        context = act["details"] # text that model will read
         result = pipeline(question=question, context=context) # generate response
         if result["score"] > maxScore:
             maxScore = result["score"]
