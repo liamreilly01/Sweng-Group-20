@@ -3,22 +3,45 @@ body{
 }
 
 #chatbot{
+    background-color: #ffffff;
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width: 40%;
     margin-top: 50px;
     border-radius: 10px;
     border: 1px solid gray;
-    padding: 10px;
-    background: white;
+    padding: 16px;
+    position: relative;
+    word-wrap: break-word;
 }
 
 .botText{
-    font-family: monospace;
+    background-color: #fff;
+    border: 1px solid #e5e5ea;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-family: "SanFrancisco";
+    margin-top: 1px;
     font-size: 14px;
-    text-align: left;
-    line-height: 25px;
-    color: rgb(109, 111, 109);
+    margin-right: auto;
+    width: fit-content;
+    max-width: 50%;
+    padding: 0.2rem 0.5rem;
+}
+
+#chatbot ::before,
+#chatbot ::after {
+  bottom: -0.1rem;
+  content: "";
+  height: 1rem;
+  position: absolute;
+}
+
+.botText {
+    align-items: flex-start;
+    background-color: #e5e5ea;
+    color: #000;
 }
 
 #userInput{
@@ -35,7 +58,7 @@ body{
     border-bottom: 3px solid #8c8b8b;
     font-family: monospace;
     font-size: 14px;
-    width: 60%;
+    width: 50%;
     padding: 16px;
     color: rgb(8, 7, 7);
 }
@@ -66,9 +89,45 @@ a{
 }
 
 .userText{
+    background-color: #248bf5;
+    border: 1px solid #e5e5ea;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-family: "SanFrancisco";
     text-align: right;
-    font-family: monospace;
+    margin-top: 1px;
     font-size: 14px;
-    line-height: 25px;
-    color: rgb(109, 111, 109);
+    margin-left: auto;
+    width: fit-content;
+    max-width: 50%;
+    padding: 0.2rem 0.5rem;
 }
+
+.userText {
+    align-items: flex-end;
+    color: #fff;
+    
+}
+
+@font-face {
+    font-family: "SanFrancisco";
+    src:
+      url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff2") format("woff2"),
+      url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff") format("woff");
+  }
+  
+  body {  
+    font-family: -apple-system, 
+      BlinkMacSystemFont, 
+      "Segoe UI", 
+      Roboto, 
+      Oxygen-Sans, 
+      Ubuntu, 
+      Cantarell, 
+      "Helvetica Neue", 
+      sans-serif;
+    font-weight: normal;
+    margin: 0;
+  }
+
