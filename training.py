@@ -9,7 +9,7 @@ from transformers import AutoModelForQuestionAnswering, TrainingArguments, Train
 
 dataset = load_dataset('json', data_files='train-test.json', split="train")
 
-dataset = dataset.train_test_split(test_size=0.2)
+dataset = dataset.train_test_split(test_size=0.1)
 print(dataset)
 
 tokenizer = AutoTokenizer.from_pretrained("distilbert-base-cased-distilled-squad") #distilbert-base-cased-distilled-squad
@@ -66,7 +66,7 @@ def preprocess_function(examples):
     inputs["end_positions"] = end_positions
     return inputs
 #
-tokenized_dataset = dataset.map(preprocess_function, batched=True)
+tokenized_dataset = dataset.map(preprocess_function, batched=True, remove_columns=dataset["train"].column_names)
 data_collator = DefaultDataCollator()
 
 model = AutoModelForQuestionAnswering.from_pretrained("distilbert-base-cased-distilled-squad") # distilbert-base-uncased
@@ -94,10 +94,3 @@ trainer = Trainer(
 trainer.train()
 
 trainer.save_model('./model/')
-
-#
-# firstLoad()
-
-# def firstLoad():
-#     model = pipeline(model='distilbert-base-cased-distilled-squad')
-#     model.save_pretrained('./model/')

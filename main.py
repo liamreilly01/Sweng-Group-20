@@ -29,10 +29,13 @@ def getMostLikelyAct(question):
     response = apiQuery(data)
 
     length = len(response)
+
+    if length == 0:
+        return "error"
+
     maxScore = 0.0
     largestIndex = 0
     for i in range(0, length):
-        # some weird bug here fix later pls keyError 0
         if (response[i] > maxScore):
             largestIndex = i
             maxScore = response[i]
@@ -49,8 +52,12 @@ def getChatbotOutput(question):
 
     print("[Finding most likely act to contain your question]")
     act = getMostLikelyAct(question)
+
+    if act == "error":
+        return "Error with Text Similarity API. Please Try Again."
+
     print("[Searching this act for the best answer]")
-    print("Disclaimer: This bot is not legally reliable. Do not use this in a court of law.")
+    print("Disclaimer: This bot is not legally reliable. Do not use this in a court of law.\n")
 
     context = act["details"]
     result = pipeline(question=question, context=act["details"])  # generate response
