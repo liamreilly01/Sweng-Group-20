@@ -44,6 +44,7 @@
                 
                 var returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
                     $('#chatbot').append(returnedMessage);
+                    $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
             })
         }
 
