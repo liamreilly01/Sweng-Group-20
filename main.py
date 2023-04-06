@@ -1,7 +1,6 @@
 # USAGE:
 # pip install transformers
 
-
 import json
 import requests
 import time
@@ -27,11 +26,15 @@ def getMostLikelyAct(question):
         data["inputs"]["sentences"].append(act["details"])
 
     response = apiQuery(data)
-
     length = len(response)
 
-    if length == 0:
-        return "error"
+    count = 0
+    while length == None:
+        response = apiQuery(data)
+        length = len(response)
+        count += 1
+
+    print("\n" + str(count) + " iterations before API call\n")
 
     maxScore = 0.0
     largestIndex = 0
@@ -52,9 +55,6 @@ def getChatbotOutput(question):
 
     print("[Finding most likely act to contain your question]")
     act = getMostLikelyAct(question)
-
-    if act == "error":
-        return "Error with Text Similarity API. Please Try Again."
 
     print("[Searching this act for the best answer]")
     print("Disclaimer: This bot is not legally reliable. Do not use this in a court of law.\n")
