@@ -62,7 +62,11 @@ theoretical_answers = [
     {"id": data["id"], "answers": data["answers"]} for data in dataset
 ]
 
-print(metric.compute(predictions=predicted_answers, references=theoretical_answers))
+
+metricCompute = metric.compute(predictions=predicted_answers, references=theoretical_answers)
+
+print("\nExact Match %: " + str(metricCompute['exact_match']))
+print("\nF1 Score %: " + str(round(metricCompute['f1'], 2)))
 
 print(theoretical_answers)
 print(predicted_answers)

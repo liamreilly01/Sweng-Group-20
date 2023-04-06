@@ -54,21 +54,8 @@ def getMostLikelyAct(question):
     return sampleActsDictionary["2022"]["acts"][largestIndex]
 
 def getChatbotOutput(question):
-    try:
-        sampleActs = open('Sample_Acts.json', "r", encoding="utf-8")
-        try:
-            sampleActsDictionary = json.loads(sampleActs.read())
-        except:
-            print("ERROR loading and reading Sample_Acts.json")
-        finally:
-            sampleActs.close()
-    except:
-        print("ERROR opening Sample_Acts.json")
-
     print("[Importing necessary libraries]")
     from transformers import pipeline
-
-
 
     # initialise the Question-Answer Pipeline
     print("[Loading in the pretrained model]")
@@ -87,10 +74,8 @@ def getChatbotOutput(question):
 
     finalAnswer = "Answer: \"" + answer + "\"\nScore: " + str(round(score,4)) + ".\nAct Title: " + act["title"] + "\nAct URL: " + act["url"]
 
-    return answer # change to finalAnswer
+    return finalAnswer
 
-
-#
 # question = input("\nWhat would you like to know? ")
 # startTime = time.time()
 # print(getChatbotOutput(question))
