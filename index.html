@@ -31,10 +31,11 @@
     </div>
 
     <script>
-
+        let userString = "";
         function getUserResponse(){
 
             var userText = $('#textInput').val();
+            userString = userText
             var userHTML = "<p class='userText'> <span>"+userText+"</span/></p>";
             $('#textInput').val("");
 
