@@ -42,7 +42,7 @@ def getMostLikelyAct(question):
         response = apiQuery(data)
         count += 1
 
-    print("\n" + str(count) + " iterations before API call\n")
+    # print("\n" + str(count) + " iterations before API call\n")
 
     maxScore = 0.0
     largestIndex = 0
@@ -54,30 +54,32 @@ def getMostLikelyAct(question):
     return sampleActsDictionary["2022"]["acts"][largestIndex]
 
 def getChatbotOutput(question):
-    print("[Importing necessary libraries]")
+    startTime = time.time()
+    # print("[Importing necessary libraries]")
     from transformers import pipeline
 
     # initialise the Question-Answer Pipeline
-    print("[Loading in the pretrained model]")
+    # print("[Loading in the pretrained model]")
     pipeline = pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
 
-    print("[Finding most likely act to contain your question]")
+    # print("[Finding most likely act to contain your question]")
     act = getMostLikelyAct(question)
 
-    print("[Searching this act for the best answer]")
-    print("Disclaimer: This bot is not legally reliable. Do not use this in a court of law.\n")
+    # print("[Searching this act for the best answer]")
+    # print("Disclaimer: This bot is not legally reliable. Do not use this in a court of law.\n")
 
-    context = act["details"]
     result = pipeline(question=question, context=act["details"])  # generate response
     answer = result["answer"]
-    score = result["score"]
 
-    finalAnswer = "Answer: \"" + answer + "\"\nScore: " + str(round(score,4)) + ".\nAct Title: " + act["title"] + "\nAct URL: " + act["url"]
+    endTime = time.time()
+
+    finalAnswer = "Answer: \"" + answer + \
+                  "\"\n\nWe found this answer in the Act: " + act["title"] + \
+                  "\nHere is the Act URL: " + act["url"].replace("xml", "html") + \
+                  "\n\nRuntime: " + str(round((endTime - startTime), 2)) + " seconds"
 
     return finalAnswer
 
-# question = input("\nWhat would you like to know? ")
-# startTime = time.time()
-# print(getChatbotOutput(question))
-# endTime = time.time()
-# print("\nRuntime:" , round((endTime - startTime), 2) , "seconds")
+question = input("\nWhat would you like to know? ")
+
+print("\n" + getChatbotOutput(question))
