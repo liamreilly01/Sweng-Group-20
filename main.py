@@ -12,8 +12,17 @@ def apiQuery(payload):
     response = requests.post(API_URL, headers=headers, json=payload)
     return response.json()
 
-
 def getMostLikelyAct(question):
+    try:
+        sampleActs = open('Sample_Acts.json', "r", encoding="utf-8")
+        try:
+            sampleActsDictionary = json.loads(sampleActs.read())
+        except:
+            print("ERROR loading and reading Sample_Acts.json")
+        finally:
+            sampleActs.close()
+    except:
+        print("ERROR opening Sample_Acts.json")
 
     data = {
         "inputs": {
@@ -29,9 +38,8 @@ def getMostLikelyAct(question):
     length = len(response)
 
     count = 0
-    while length == None:
+    while "error" in response:
         response = apiQuery(data)
-        length = len(response)
         count += 1
 
     print("\n" + str(count) + " iterations before API call\n")
@@ -46,8 +54,21 @@ def getMostLikelyAct(question):
     return sampleActsDictionary["2022"]["acts"][largestIndex]
 
 def getChatbotOutput(question):
+    try:
+        sampleActs = open('Sample_Acts.json', "r", encoding="utf-8")
+        try:
+            sampleActsDictionary = json.loads(sampleActs.read())
+        except:
+            print("ERROR loading and reading Sample_Acts.json")
+        finally:
+            sampleActs.close()
+    except:
+        print("ERROR opening Sample_Acts.json")
+
     print("[Importing necessary libraries]")
     from transformers import pipeline
+
+
 
     # initialise the Question-Answer Pipeline
     print("[Loading in the pretrained model]")
@@ -66,21 +87,12 @@ def getChatbotOutput(question):
 
     finalAnswer = "Answer: \"" + answer + "\"\nScore: " + str(round(score,4)) + ".\nAct Title: " + act["title"] + "\nAct URL: " + act["url"]
 
-    return finalAnswer
+    return answer # change to finalAnswer
 
-try:
-    sampleActs = open('Sample_Acts.json', "r", encoding="utf-8")
-    try:
-        sampleActsDictionary = json.loads(sampleActs.read())
-    except:
-        print("ERROR loading and reading Sample_Acts.json")
-    finally:
-        sampleActs.close()
-except:
-    print("ERROR opening Sample_Acts.json")
 
-question = input("\nWhat would you like to know? ")
-startTime = time.time()
-print(getChatbotOutput(question))
-endTime = time.time()
-print("\nRuntime:" , round((endTime - startTime), 2) , "seconds")
+#
+# question = input("\nWhat would you like to know? ")
+# startTime = time.time()
+# print(getChatbotOutput(question))
+# endTime = time.time()
+# print("\nRuntime:" , round((endTime - startTime), 2) , "seconds")
