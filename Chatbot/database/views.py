@@ -19,7 +19,7 @@ def database(request):
 @api_view(['GET'])
 def legislationList(request):
   legislationActs = Legislation.objects.all()
-  serializer = LegislationSerializer(legislationActs, many = True)
+  serializer = LegislationSerializer(legislationActs, many=True)
   return Response(serializer.data)
 
 @api_view(['GET'])
@@ -34,10 +34,11 @@ def obtainModel(request):
 
 def botResponse(request):
     myMessage = request.GET.get('myMessage')
-    model = getModel()
+    pipeline = request.GET
+    print(pipeline)
     flag = True
     mostLikelyAct = getMostLikelyAct(myMessage)
-    myResponse = getChatbotOutput(mostLikelyAct, model, myMessage)
+    myResponse = getChatbotOutput(mostLikelyAct, pipeline, myMessage)
     return HttpResponse(myResponse)
 
 def index(request):

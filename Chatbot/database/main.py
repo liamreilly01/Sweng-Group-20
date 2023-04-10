@@ -10,9 +10,9 @@ import time
 
 def getModel():
     from transformers import pipeline
-    pipeline = pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
+    pipe = pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
     print("can return")
-    return pipeline
+    return pipe
 
 def apiQuery(payload):
     api_token = "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"
@@ -51,19 +51,23 @@ def getMostLikelyAct(question):
 
     maxScore = 0.0
     largestIndex = 0
+    secondLargestIndex = 0
+    thirdLargestIndex = 0
     for i in range(1, length):
         if (response[i] > maxScore):
+            thirdLargestIndex = secondLargestIndex;
+            secondLargestIndex = largestIndex;
             largestIndex = i
             maxScore = response[i]
 
-    mostLikelyAct = acts["acts"][largestIndex]
+    mostLikelyActs = [acts["acts"][largestIndex], acts["acts"][secondLargestIndex], acts["acts"][thirdLargestIndex]]
     message = "[Found the Act most likely to contain your answer]"
-    return mostLikelyAct
+    return mostLikelyActs
 
 
 def getChatbotOutput(mostLikelyAct, pipeline, question):
     print("entered method")
-    context = mostLikelyAct["title"] + ". " + mostLikelyAct["description"] + ". " + mostLikelyAct["details"]
+    context = mostLikelyAct[0]["title"] + ". " + mostLikelyAct[0]["description"] + ". " + mostLikelyAct[0]["details"]
     result = pipeline(question=question, context=context)  # generate response
     answer = result["answer"]
     mostLikelyAct["url"] = mostLikelyAct["url"].replace("xml", "html")
