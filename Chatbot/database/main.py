@@ -8,7 +8,7 @@ import json
 import requests
 import time
 
-def getModel():
+def getModel(temp):
     from transformers import pipeline
     pipeline = pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
     message = "[Loaded in the pretrained model]"
@@ -65,11 +65,10 @@ def getChatbotOutput(mostLikelyAct, pipeline, question):
     context = mostLikelyAct["title"] + ". " + mostLikelyAct["description"] + ". " + mostLikelyAct["details"]
     result = pipeline(question=question, context=context)  # generate response
     answer = result["answer"]
-    score = result["score"]
     mostLikelyAct["url"] = mostLikelyAct["url"].replace("xml", "html")
 
     finalAnswer = "Answer: \"" + answer + \
-                  "\"\n\nWe found this answer in the Act: " + mostLikelyAct["title"] + \
-                  "\nHere is the Act URL: <a href=\"" + mostLikelyAct["url"] + "\">" + mostLikelyAct["url"] + "</a>"
+                  "\"<br>We found this answer in the Act: " + mostLikelyAct["title"] + \
+                  "<br>Here is the Act URL: <a href=\"" + mostLikelyAct["url"] + "\">" + mostLikelyAct["url"] + "</a>"
 
     return finalAnswer

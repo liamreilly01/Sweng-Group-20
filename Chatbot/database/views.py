@@ -29,7 +29,11 @@ def legislationDetail(request, key):
 
 def botResponse(request):
     myMessage = request.GET.get('myMessage')
-    myResponse = getChatbotOutput(getMostLikelyAct(myMessage)[0], getModel()[0], myMessage)
+    model = getModel("")
+    # print (model[1])
+    mostLikelyAct = getMostLikelyAct(myMessage)
+    # print (mostLikelyAct[1])
+    myResponse = getChatbotOutput(mostLikelyAct[0], model[0], myMessage)
     return HttpResponse(myResponse)
 
 def index(request):

@@ -35,18 +35,24 @@
 let userString = "";
         function getUserResponse(){
 
-            var userText = $('#textInput').val();
+            let userText = $('#textInput').val();
             userString = userText
-            var userHTML = "<p class='userText'> <span>"+userText+"</span/></p>";
+            let userHTML = "<p class='userText'> <span>"+userText+"</span/></p>";
             $('#textInput').val("");
             if(userString.length !== 0)
             {
             $('#chatbot').append(userHTML);
             }
 
-            $.get('/database/botResponse',{myMessage:userText}).done(function(data){
-                
-                var returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
+            // $.get('/database/getModel',{myMessage:userText}).done(function() {
+            //     let returnMessage = "<p class='botText'>[Model loaded in]</p>";
+            //
+            //     $('#chatbot').append(returnMessage);
+            //     $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
+            // });
+
+            $.get('/database/botResponse',{myMessage:userText}).done(function(data) {
+                let returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
                     if(userString.length !== 0)
             {
                     $('#chatbot').append(returnedMessage);
@@ -55,8 +61,6 @@ let userString = "";
             })
         }
 
-        
-    
         $('#buttonInput').click(function(){
             getUserResponse();
         })
