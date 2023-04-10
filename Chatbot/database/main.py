@@ -31,21 +31,17 @@ def getMostLikelyAct(question):
     }
 
     for act in acts["acts"]:
-        data["inputs"]["sentences"].append(act["title"] + ". " + act["description"] + ". " + act["details"])
+        if act["id"] != 1:
+            data["inputs"]["sentences"].append(act["details"])
 
     response = apiQuery(data)
+
     length = len(response)
-
-    count = 0
-    while "error" in response:
-        response = apiQuery(data)
-        count += 1
-
-    print("\n" + str(count) + " iterations before API call\n")
-
     maxScore = 0.0
     largestIndex = 0
-    for i in range(1, length):
+    # for i in range(1, length - 1)
+    for i in range(1, 4):
+        # some weird bug here fix later pls keyError 0
         if (response[i] > maxScore):
             largestIndex = i
             maxScore = response[i]
@@ -58,13 +54,12 @@ def getChatbotOutput(question):
 
     # initialise the Question-Answer Pipeline
     print("[Loading in the pretrained model]")
-    pipeline = pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
+    pipeline = pipeline("question-answering", model=(os.path.join(BASE_DIR, "model")))
 
     print("[Finding most likely act to contain your question]")
     act = getMostLikelyAct(question)
-
     print("[Searching this act for the best answer]")
-    print("Disclaimer: This bot is not legally reliable. Do not use this in a court of law.\n")
+    print("Disclaimer: This bot is not legally reliable. Do not use this in a court of law.")
 
     context = act["details"]
     result = pipeline(question=question, context=act["details"])  # generate response
@@ -78,7 +73,7 @@ def getChatbotOutput(question):
 # try:
 #     sampleActs = open('Sample_Acts.json', "r", encoding="utf-8")
 #     try:
-#         acts = json.loads(sampleActs.read())
+#         sampleActsDictionary = json.loads(sampleActs.read())
 #     except:
 #         print("ERROR loading and reading Sample_Acts.json")
 #     finally:
@@ -107,7 +102,7 @@ def getChatbotOutput(question):
 #     #     sampleActs = open('../acts.json', "r", encoding="utf-8")
 #     #     print("opended");
 #     #     try:
-#     #         acts = json.loads(sampleActs.read())
+#     #         sampleActsDictionary = json.loads(sampleActs.read())
 #     #         print("loaded");
 #     #     except:
 #     #         print("ERROR loading and reading Sample_Acts.json")
