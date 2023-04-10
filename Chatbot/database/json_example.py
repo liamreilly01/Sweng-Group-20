@@ -4,14 +4,16 @@ import requests;    #needed to for requests function
 import json
 
 json_response = requests.get("http://127.0.0.1:8000/legislationList/") #html 'get' function
-actsString = str(json_response.content)
-actsString = actsString.replace("b'", "{\"data\":", 1).replace("}]'", "}]}", 1)
-actsString = actsString.encode("unicode_escape")
+actsString = json_response.content
+actsString = actsString.decode("utf-8")
+#actsString = actsString.replace("b'", "{\"data\":", 1).replace("}]'", "}]}", 1)
+actsString = "{\"data\":" + actsString.replace("}]", "}]}", 1)
+print(actsString)
 #out_file = open("myfile.json", "w")
   
 #json.dump(actsString, out_file)
 acts = json.loads(actsString)
-print(acts["data"][1])
+print(acts["data"][7]["description"])
 #print(actsString)
 #print(json_response.status_code) #if 200, everything went well
 #print(json_response.content)     #prints file

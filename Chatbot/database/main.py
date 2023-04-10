@@ -24,9 +24,9 @@ def apiQuery(payload):
 
 def getMostLikelyAct(question):
     json_response = requests.get("http://127.0.0.1:8000/legislationList")
-    actsString = str(json_response.content)
-    actsString = actsString.replace("b'", "{\"acts\":", 1).replace("}]'", "}]}", 1)
-    actsString = actsString.encode("unicode_escape")
+    actsString = json_response.content
+    actsString = actsString.decode("utf-8")
+    actsString = "{\"acts\":" + actsString.replace("}]", "}]}", 1)
     acts = json.loads(actsString)
 
     data = {
