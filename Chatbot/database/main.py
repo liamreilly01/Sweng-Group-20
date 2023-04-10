@@ -58,7 +58,7 @@ def getMostLikelyAct(question):
 
     mostLikelyAct = acts["acts"][largestIndex]
     message = "[Found the Act most likely to contain your answer]"
-    return [mostLikelyAct, message]
+    return mostLikelyAct
 
 
 def getChatbotOutput(mostLikelyAct, pipeline, question):

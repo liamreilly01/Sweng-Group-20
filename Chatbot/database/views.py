@@ -36,11 +36,9 @@ def botResponse(request):
     myMessage = request.GET.get('myMessage')
     model = getModel()
     flag = True
-    # print (model[1])
     mostLikelyAct = getMostLikelyAct(myMessage)
-    # print (mostLikelyAct[1])
-    #myResponse = getChatbotOutput(mostLikelyAct[0], model[0], myMessage)
-    return HttpResponse("0")
+    myResponse = getChatbotOutput(mostLikelyAct, model, myMessage)
+    return HttpResponse(myResponse)
 
 def index(request):
     return render(request, 'blog/index.html')
