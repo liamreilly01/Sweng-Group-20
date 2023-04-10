@@ -60,20 +60,20 @@ def getMostLikelyAct(question):
             largestIndex = i
             maxScore = response[i]
 
-    mostLikelyActs = [acts["acts"][largestIndex], acts["acts"][secondLargestIndex], acts["acts"][thirdLargestIndex]]
+    mostLikelyActs = acts["acts"][largestIndex]
     message = "[Found the Act most likely to contain your answer]"
     return mostLikelyActs
 
 
-def getChatbotOutput(mostLikelyAct, pipeline, question):
+def getChatbotOutput(mostLikelyActID, mostLikelyActUrl, mostLikelyActTitle, mostLikelyActDesription, mostLikelyActDetails, model, question):
     print("entered method")
-    context = mostLikelyAct[0]["title"] + ". " + mostLikelyAct[0]["description"] + ". " + mostLikelyAct[0]["details"]
-    result = pipeline(question=question, context=context)  # generate response
+    context = mostLikelyActTitle + ". " + mostLikelyActDesription + ". " + mostLikelyActDetails
+    result = model(question=question, context=context)  # generate response
     answer = result["answer"]
-    mostLikelyAct["url"] = mostLikelyAct["url"].replace("xml", "html")
+    mostLikelyActUrl = mostLikelyActUrl.replace("xml", "html")
 
     finalAnswer = "Answer: \"" + answer + \
-                  "\"<br>We found this answer in the Act: " + mostLikelyAct["title"] + \
-                  "<br>Here is the Act URL: <a href=\"" + mostLikelyAct["url"] + "\">" + mostLikelyAct["url"] + "</a>"
+                  "\"<br>We found this answer in the Act: " + mostLikelyActTitle + \
+                  "<br>Here is the Act URL: <a href=\"" + mostLikelyActUrl + "\">" + mostLikelyActUrl + "</a>"
 
     return finalAnswer

@@ -29,16 +29,27 @@ def legislationDetail(request, key):
   return Response(serializer.data)
 
 def obtainModel(request):
-    print("worked?")
-    return HttpResponse(getModel())
+  print("model getting")
+  model = getModel()
+  return HttpResponse(model)
+
+def obtainMostLikelyAct(request):
+  print("api querying")
+  MostLikelyAct = getMostLikelyAct(request.GET.get('myMessage'))
+  return HttpResponse(MostLikelyAct)
+
 
 def botResponse(request):
     myMessage = request.GET.get('myMessage')
-    pipeline = request.GET
+    pipeline = request.GET.get('pipeline')
     print(pipeline)
     flag = True
-    mostLikelyAct = getMostLikelyAct(myMessage)
-    myResponse = getChatbotOutput(mostLikelyAct, pipeline, myMessage)
+    mostLikelyActID = request.GET.get('id')
+    mostLikelyActUrl = request.GET.get('url')
+    mostLikelyActTitle = request.GET.get('title')
+    mostLikelyActDesription = request.GET.get('desription')
+    mostLikelyActDetails = request.GET.get('details')
+    myResponse = getChatbotOutput(mostLikelyActID, mostLikelyActUrl, mostLikelyActTitle, mostLikelyActDesription, mostLikelyActDetails, pipeline, myMessage)
     return HttpResponse(myResponse)
 
 def index(request):

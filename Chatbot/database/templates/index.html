@@ -32,7 +32,7 @@
 
     <script>
 
-let userString = "";
+    let userString = "";
         function getUserResponse(){
 
             let userText = $('#textInput').val();
@@ -44,32 +44,40 @@ let userString = "";
             if(userString.length !== 0) {
                 $('#chatbot').append(userHTML);
             }
-
-            let pipe = getModelResponse();
             console.log(userText);
-            console.log(pipe);
-
-            $.get('/database/botResponse',{myMessage:userText, pipeline:pipe}).done(function(data) {
-                let returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
-                    if(userString.length !== 0)
-            {
-                    $('#chatbot').append(returnedMessage);
-                    $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
-            }
-            })
-        }
-
-        function getModelResponse() {
             $.get('/database/obtainModel').done(function(data) {
+                let pipe = data;
                 let testMsg = "<p class='botText'>[Model loaded in]</p>";
-                $('#chatbot').append(data)
+                $('#chatbot').append(testMsg)
                 $('#body').hide().show(0);
-                let pipe = data
-                return pipe;
+                console.log(pipe);
+                $.get('/database/obtainMostLikelyAct',{myMessage:userText}).done(function(data) {
+                    data = JSON.parse(data)
+                    let id = data['id'];
+                    let url = data['url'];
+                    let title = data['title']
+                    let description = data['description'];
+                    let details = data['details'];
+                    let testMsg = "<p class='botText'>[Likely acts found]</p>";
+                    $('#chatbot').append(testMsg)
+                    $('#body').hide().show(0);
+                    console.log(id);
+                    console.log(url);
+                    console.log(title);
+                    console.log(description);
+                    console.log(details);
+                    $.get('/database/botResponse',{myMessage:userText, pipeline:pipe, id:id, url:url, title:title, description:description, details:details}).done(function(data) {
+                        let returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
+                        if(userString.length !== 0) {
+                            $('#chatbot').append(returnedMessage);
+                            $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
+                        }
+                    })
+                })
             })
         }
 
-        function redraw(element){
+        function redraw(element) {
             if (!element) { 
                 return; 
             }
