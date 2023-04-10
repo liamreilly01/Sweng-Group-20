@@ -1,9 +1,11 @@
 body{
-    background-color: #1c3664;
+    background-color: rgb(241, 234, 205);
 }
 
+
+
 #chatbot{
-    background-color: #ffffff;
+    background-color: #1c3664;
      
     margin-left: auto;
     margin-right: auto;
@@ -22,7 +24,7 @@ body{
 
 .botText{
     background-color: #fff;
-    border: 1px solid #e5e5ea;
+    border: 1px solid #1c3664;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
@@ -73,13 +75,21 @@ body{
 
 }
 .heading{
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #1c3664;
 }
 
+.title{
+    color: #1c3664;
+}
 .heading .image{
     padding-right: 10px;
+}
+.heading a{
+    color: #1c3664;
 }
 
 a{
