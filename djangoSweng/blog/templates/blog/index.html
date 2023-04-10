@@ -38,7 +38,7 @@
             userString = userText
             var userHTML = "<p class='userText'> <span>"+userText+"</span/></p>";
             $('#textInput').val("");
-            if(userString.length !== 0)
+            if((userString.length !== 0) && !(/^\s*$/.test(userString)))
             {
             $('#chatbot').append(userHTML);
             }
@@ -46,9 +46,9 @@
             $.get('/blog/botResponse',{myMessage:userText}).done(function(data){
                 
                 var returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
-                    if(userString.length !== 0)
+                    if(userString.length !== 0 && !(/^\s*$/.test(userString)))
             {
-                    $('#chatbot').append(returnedMessage);
+                    $('#chatbot').append(returnedMessage)
                     $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
             }
             })
