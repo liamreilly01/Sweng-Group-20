@@ -6,7 +6,7 @@ from rest_framework.response import Response #from tutorial 2
 from rest_framework.decorators import api_view #from tutorial 2
 from . serializers import * #from tutorial 2, created in serializers.py
 from django.shortcuts import render
-from database.main import getChatbotOutput
+from database.main import *
 
 
 
@@ -29,7 +29,7 @@ def legislationDetail(request, key):
 
 def botResponse(request):
     myMessage = request.GET.get('myMessage')
-    myResponse = getChatbotOutput(myMessage)
+    myResponse = getChatbotOutput(getMostLikelyAct(myMessage)[0], getModel()[0], myMessage)
     return HttpResponse(myResponse)
 
 def index(request):
