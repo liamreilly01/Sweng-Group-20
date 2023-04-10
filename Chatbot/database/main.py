@@ -70,8 +70,9 @@ def getChatbotOutput(question):
     result = pipeline(question=question, context=act["details"])  # generate response
     answer = result["answer"]
     score = result["score"]
+    act["url"] = act["url"].replace("xml", "html")
 
-    finalAnswer = "Answer: \"" + answer + "\"\nScore: " + str(round(score,4)) + ".\nAct Title: " + act["title"] + "\nAct URL: " + act["url"]
+    finalAnswer = "Answer: \"" + answer + "\"\nScore: " + str(round(score,4)) + ".\nAct Title: " + act["title"] + "\nAct URL: <a href=\"" + act["url"] + "\">" + act["url"] + "</a>"
 
     return finalAnswer
 

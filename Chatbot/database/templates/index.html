@@ -7,7 +7,7 @@
     <title>Document</title>
 
     {%  load static %}
-    <link rel="stylesheet" type="text/css" href="../static/blog/style.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" />
 
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
@@ -32,18 +32,26 @@
 
     <script>
 
+let userString = "";
         function getUserResponse(){
 
             var userText = $('#textInput').val();
-            var userHTML = "<p class='userText'>You: <span>"+userText+"</span/></p>";
+            userString = userText
+            var userHTML = "<p class='userText'> <span>"+userText+"</span/></p>";
             $('#textInput').val("");
-
+            if(userString.length !== 0)
+            {
             $('#chatbot').append(userHTML);
+            }
 
             $.get('/database/botResponse',{myMessage:userText}).done(function(data){
                 
                 var returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
+                    if(userString.length !== 0)
+            {
                     $('#chatbot').append(returnedMessage);
+                    $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
+            }
             })
         }
 
@@ -58,9 +66,7 @@
             getUserResponse();
         }
     });
-
-
-
+    
     </script>
 
 </body>
