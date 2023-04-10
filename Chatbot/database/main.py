@@ -8,11 +8,11 @@ import json
 import requests
 import time
 
-def getModel(temp):
+def getModel():
     from transformers import pipeline
     pipeline = pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
-    message = "[Loaded in the pretrained model]"
-    return [pipeline, message]
+    print("can return")
+    return pipeline
 
 def apiQuery(payload):
     api_token = "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"
@@ -62,6 +62,7 @@ def getMostLikelyAct(question):
 
 
 def getChatbotOutput(mostLikelyAct, pipeline, question):
+    print("entered method")
     context = mostLikelyAct["title"] + ". " + mostLikelyAct["description"] + ". " + mostLikelyAct["details"]
     result = pipeline(question=question, context=context)  # generate response
     answer = result["answer"]

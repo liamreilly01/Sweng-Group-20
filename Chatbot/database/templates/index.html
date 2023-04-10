@@ -34,6 +34,23 @@
 
 let userString = "";
         function getUserResponse(){
+            function redraw(element){
+
+if (!element) { 
+    return; 
+}
+
+var n = document.createTextNode(' ');
+var disp = element.style.display;
+
+element.appendChild(n);
+element.style.display = 'none';
+
+setTimeout(function(){
+    element.style.display = disp;
+    n.parentNode.removeChild(n);
+}, 20); 
+}
 
             let userText = $('#textInput').val();
             userString = userText
@@ -44,13 +61,12 @@ let userString = "";
             $('#chatbot').append(userHTML);
             }
 
-            // $.get('/database/getModel',{myMessage:userText}).done(function() {
-            //     let returnMessage = "<p class='botText'>[Model loaded in]</p>";
-            //
-            //     $('#chatbot').append(returnMessage);
-            //     $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
-            // });
-
+            $.get('/database/obtainModel', {myMessage:userText}).done(function() {
+                let testMsg = "<p class='botText'>[Model loaded in]</p>";
+                $('#chatbot').append(testMsg)
+                $('#body').hide().show(0);
+                console.log("here")
+            }).done(
             $.get('/database/botResponse',{myMessage:userText}).done(function(data) {
                 let returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
                     if(userString.length !== 0)
@@ -58,7 +74,7 @@ let userString = "";
                     $('#chatbot').append(returnedMessage);
                     $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
             }
-            })
+            }))
         }
 
         $('#buttonInput').click(function(){
@@ -69,8 +85,8 @@ let userString = "";
         if(e.which == 13){
             getUserResponse();
         }
-    });
-    
+        });
+
     </script>
 
 </body>

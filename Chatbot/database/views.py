@@ -8,6 +8,7 @@ from . serializers import * #from tutorial 2, created in serializers.py
 from django.shortcuts import render
 from database.main import *
 
+flag = False;
 
 
 def database(request):
@@ -27,14 +28,19 @@ def legislationDetail(request, key):
   serializer = LegislationSerializer(legislation, many=False)
   return Response(serializer.data)
 
+def obtainModel(request):
+    print("worked?")
+    return HttpResponse(getModel())
+
 def botResponse(request):
     myMessage = request.GET.get('myMessage')
-    model = getModel("")
+    model = getModel()
+    flag = True
     # print (model[1])
     mostLikelyAct = getMostLikelyAct(myMessage)
     # print (mostLikelyAct[1])
-    myResponse = getChatbotOutput(mostLikelyAct[0], model[0], myMessage)
-    return HttpResponse(myResponse)
+    #myResponse = getChatbotOutput(mostLikelyAct[0], model[0], myMessage)
+    return HttpResponse("0")
 
 def index(request):
     return render(request, 'blog/index.html')

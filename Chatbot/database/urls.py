@@ -8,5 +8,5 @@ urlpatterns = [
     path('legislationList/<str:key>', views.legislationDetail, name="legislation"),
 
     path('botResponse', views.botResponse, name='botResponse'),
-    path('getModel', main.getModel, name='getModel')
+    path('obtainModel', views.obtainModel, name='obtainModel')
 ]
