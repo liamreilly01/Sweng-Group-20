@@ -46,27 +46,26 @@
             }
             console.log(userText);
             $.get('/database/obtainModel').done(function(data) {
-                let pipe = data;
+                //let pipe = data;
                 let testMsg = "<p class='botText'>[Model loaded in]</p>";
                 $('#chatbot').append(testMsg)
                 $('#body').hide().show(0);
-                console.log(pipe);
+                //console.log(pipe);
                 $.get('/database/obtainMostLikelyAct',{myMessage:userText}).done(function(data) {
-                    data = JSON.parse(data)
-                    let id = data['id'];
-                    let url = data['url'];
-                    let title = data['title']
-                    let description = data['description'];
-                    let details = data['details'];
+                    // let id = data['id'];
+                    // let url = data['url'];
+                    // let title = data['title']
+                    // let description = data['description'];
+                    // let details = data['details'];
                     let testMsg = "<p class='botText'>[Likely acts found]</p>";
                     $('#chatbot').append(testMsg)
                     $('#body').hide().show(0);
-                    console.log(id);
-                    console.log(url);
-                    console.log(title);
-                    console.log(description);
-                    console.log(details);
-                    $.get('/database/botResponse',{myMessage:userText, pipeline:pipe, id:id, url:url, title:title, description:description, details:details}).done(function(data) {
+                    // console.log(id);
+                    // console.log(url);
+                    // console.log(title);
+                    // console.log(description);
+                    console.log(data);
+                    $.get('/database/botResponse',{myMessage:userText}).done(function(data) {
                         let returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
                         if(userString.length !== 0) {
                             $('#chatbot').append(returnedMessage);

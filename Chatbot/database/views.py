@@ -41,14 +41,20 @@ def obtainMostLikelyAct(request):
 
 def botResponse(request):
     myMessage = request.GET.get('myMessage')
-    pipeline = request.GET.get('pipeline')
+    pipeline = getModel()
     print(pipeline)
     flag = True
-    mostLikelyActID = request.GET.get('id')
-    mostLikelyActUrl = request.GET.get('url')
-    mostLikelyActTitle = request.GET.get('title')
-    mostLikelyActDesription = request.GET.get('desription')
-    mostLikelyActDetails = request.GET.get('details')
+    # mostLikelyActID = request.GET.get('id')
+    # mostLikelyActUrl = request.GET.get('url')
+    # mostLikelyActTitle = request.GET.get('title')
+    # mostLikelyActDesription = request.GET.get('desription')
+    # mostLikelyActDetails = request.GET.get('details')
+    mostLikelyAct = getMostLikelyAct(request.GET.get('myMessage'))
+    mostLikelyActID = mostLikelyAct['id']
+    mostLikelyActUrl = mostLikelyAct['url']
+    mostLikelyActTitle = mostLikelyAct['title']
+    mostLikelyActDesription = mostLikelyAct['description']
+    mostLikelyActDetails = mostLikelyAct['details']
     myResponse = getChatbotOutput(mostLikelyActID, mostLikelyActUrl, mostLikelyActTitle, mostLikelyActDesription, mostLikelyActDetails, pipeline, myMessage)
     return HttpResponse(myResponse)
 
