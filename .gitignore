@@ -1,0 +1,5 @@
+# training model
+model/pytorch_model.bin
+
+# weird mac generated files
+**/.DS_Store
