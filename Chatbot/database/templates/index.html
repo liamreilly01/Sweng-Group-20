@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta chartset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    {%  load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" />
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class = "heading">
+        <div class = "image"><img src = "https://image4.owler.com/logo/propylon_owler_20160228_142152_original.png" height = "50px" width = "70px"></div>
+
+    <div class = "title"><h1>ML Chatbot for <a href= "https://www.irishstatutebook.ie/" target = "_blank" >www.irishstatuebook.ie</a></h1></div>
+    </div>
+    <div>
+        <div id="chatbot">
+            <p class="botText"><span> Hi </span></p>
+        </div>
+
+        <div id="userInput">
+            <input type="text" id="textInput" name="userMessage" placeholder="What do you want to know about?"/>
+            <input type="submit" value="Enter" id="buttonInput"/>
+
+        </div>
+    </div>
+
+    <script>
+
+    let userString = "";
+        function getUserResponse(){
+
+            let userText = $('#textInput').val();
+            userString = userText
+            let userHTML = "<p class='userText'> <span>"+userText+"</span/></p>";
+            
+            $('#textInput').val("");
+
+            if(userString.length !== 0) {
+                $('#chatbot').append(userHTML);
+            }
+            console.log(userText);
+            $.get('/database/obtainModel').done(function(data) {
+                //let pipe = data;
+                let testMsg = "<p class='botText'>[Model loaded in]</p>";
+                $('#chatbot').append(testMsg)
+                $('#body').hide().show(0);
+                //console.log(pipe);
+                $.get('/database/obtainMostLikelyAct',{myMessage:userText}).done(function(data) {
+                    // let id = data['id'];
+                    // let url = data['url'];
+                    // let title = data['title']
+                    // let description = data['description'];
+                    // let details = data['details'];
+                    let testMsg = "<p class='botText'>[Likely acts found]</p>";
+                    $('#chatbot').append(testMsg)
+                    $('#body').hide().show(0);
+                    // console.log(id);
+                    // console.log(url);
+                    // console.log(title);
+                    // console.log(description);
+                    console.log(data);
+                    $.get('/database/botResponse',{myMessage:userText}).done(function(data) {
+                        let returnedMessage = "<p class='botText'>ChatBot: <span>"+ data +"</span/></p>";
+                        if(userString.length !== 0) {
+                            $('#chatbot').append(returnedMessage);
+                            $('#chatbot').scrollTop($('#chatbot')[0].scrollHeight);
+                        }
+                    })
+                })
+            })
+        }
+
+        function redraw(element) {
+            if (!element) { 
+                return; 
+            }
+
+            var n = document.createTextNode(' ');
+            var disp = element.style.display;
+
+            element.appendChild(n);
+            element.style.display = 'none';
+
+            setTimeout(function() {
+                element.style.display = disp;
+                n.parentNode.removeChild(n);
+            }, 20); 
+        }
+
+        $('#buttonInput').click(function(){
+            getUserResponse();
+        })
+
+        $(document).on("keypress", function(e){
+        if(e.which == 13){
+            getUserResponse();
+        }
+        });
+
+    </script>
+
+</body>
+</html>

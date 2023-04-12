@@ -62,3 +62,11 @@ run the following command in the terminal:
 > Once you run the server you will be given a link like http://127.0.0.1:8000 in your terminal
 > Add /admin to the url like so: http://127.0.0.1:8000/admin which will then prompt you to log in 
 > Your username will just be your name and your password is the beginning part of your email in all caps 
+
+## To access all acts
+
+Acts are numbered starting from 1 in the order in which they are added to the database
+
+> To access acts from a browser, type in the following url : http://127.0.0.1:8000/legislationList/1 (replacing the '1' at the end with the desired act number)
+> In a browser, a full list can be obtained by typing : http://127.0.0.1:8000/legislationList
+
