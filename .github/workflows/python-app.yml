@@ -52,4 +52,4 @@ jobs:
 
         pip install lxml
 
-        pytest tests.py
+        pytest test.py
